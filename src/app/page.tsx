@@ -1,10 +1,11 @@
 import React from 'react'
-import Button from './components/Button/button'
+
+import AuthForm from './containers/AuthContainer/authform'
 
 const page = () => {
   return (
     <div>
-      <Button text='ff' disabled={false}/>
+     <AuthForm/>
     </div>
   )
 }
