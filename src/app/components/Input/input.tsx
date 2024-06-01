@@ -13,7 +13,7 @@ const Input = React.forwardRef<HTMLInputElement, IINPUTPROPS>(({ type, icon, pla
         <input
           ref={ref}
           type={type}
-          className='border-[2px] border-gray-200 w-full p-[8px] h-[55px] rounded-[4px] bg-white text-black placeholder-gray-400 focus:border-blue-500 focus:outline-none'
+          className='text-sm border-[2px] border-gray-200 w-full p-[8px] h-[55px] rounded-[4px] bg-white text-black placeholder-gray-400 focus:border-blue-500 focus:outline-none'
           placeholder={placeholder}
           id={id}
           
