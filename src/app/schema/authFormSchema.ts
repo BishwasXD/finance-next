@@ -8,4 +8,4 @@ export const passwordSchema = z
   .regex(/[!@#$%&*]/, { message: "should contain atleast one special character" });
 
 
-export const emailSchema = z.string().min(8,{message:'atleast 8 bruh!'})
+export const emailSchema = z.string().email({message:'must be valid email'})
