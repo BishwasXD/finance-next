@@ -50,6 +50,7 @@ const AuthForm = () => {
     }
   };
 
+  //TODO: implement O-auth show error when schema not matched.
   return (
     <div className="flex flex-col gap-[20px] bg-white px-[30px] py-[40px] mt-[20px] mr-[20px] rounded-lg shadow-md float-end">
       <div className="flex flex-col text-center gap-[14px]">
