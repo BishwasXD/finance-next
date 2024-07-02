@@ -8,7 +8,6 @@ import { useForm } from "react-hook-form";
 import { passwordSchema, emailSchema } from "@/app/schema/authFormSchema";
 import { zodResolver } from "@hookform/resolvers/zod";
 import z from "zod";
-import { toast } from "react-toastify";
 import axios from "axios";
 import { signUpUrl, loginUrl } from "@/app/requests/authFormRequests";
 
@@ -29,10 +28,6 @@ const AuthForm = () => {
 
     console.log("submitted successfully", confirmPassword, password);
 
-    if (confirmPassword !== password) {
-      toast.error("password didnot matched");
-      return;
-    }
     try {
       const res = await axios.post(
         !isLogin ? signUpUrl : loginUrl,
@@ -44,13 +39,12 @@ const AuthForm = () => {
             }
           : { email: email, password: password }
       );
-      console.log("response from a server", res.data);
+    
     } catch (error) {
-      console.log("got error", error);
+      
     }
   };
 
-  //TODO: implement O-auth show error when schema not matched.
   return (
     <div className="flex flex-col gap-[20px] bg-white px-[30px] py-[40px] mt-[20px] mr-[20px] rounded-lg shadow-md float-end">
       <div className="flex flex-col text-center gap-[14px]">

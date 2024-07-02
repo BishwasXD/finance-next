@@ -1,6 +1,6 @@
-import React from 'react'
+import React, {SelectHTMLAttributes} from 'react'
 
-interface ISelectProps{
+interface ISelectProps extends SelectHTMLAttributes<HTMLInputElement>{
   options: string[]
 }
 
