@@ -1,15 +1,15 @@
 "use client";
 import React from "react";
-import Button from "@/app/components/Button/button";
-import Input from "@/app/components/Input/input";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
 import { LinkedinIcon } from "lucide-react";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
-import { passwordSchema, emailSchema } from "@/app/schema/authFormSchema";
+import { passwordSchema, emailSchema } from "../../schema/authFormSchema";
 import { zodResolver } from "@hookform/resolvers/zod";
 import z from "zod";
 import axios from "axios";
-import { signUpUrl, loginUrl } from "@/app/requests/authFormRequests";
+import { signUpUrl, loginUrl } from "../../requests/authFormRequests";
 
 const AuthForm = () => {
   const [isLogin, setIsLogin] = useState<boolean>(false);
@@ -46,7 +46,7 @@ const AuthForm = () => {
   };
 
   return (
-    <div className="flex flex-col gap-[20px] bg-white px-[30px] py-[40px] mt-[20px] mr-[20px] rounded-lg shadow-md float-end">
+    <div className="flex flex-col gap-[20px] bg-white px-[30px] py-[40px] mt-[20px] mr-[20px] rounded-lg shadow-md float-end w-[565px]">
       <div className="flex flex-col text-center gap-[14px]">
         <p className="font-bold ">Welcome to Track My Finance</p>
         <p className="text-sm text-gray-600">
@@ -56,12 +56,16 @@ const AuthForm = () => {
       </div>
       <div className="flex gap-4 items-center justify-center">
         <Button
-          text="Sign Up with Facebook"
-          icon={<LinkedinIcon className="text-blue-600" />}
+          title="Sign Up with Facebook"
+          icon={<LinkedinIcon/>}
+          variant='outline'
+          className="flex gap-[10px]"
         />
         <Button
-          text="Sign Up with Google"
-          icon={<LinkedinIcon className="text-blue-600" />}
+          title="Sign Up with Google"
+          icon={<LinkedinIcon  />}
+          variant='outline'
+          className="flex gap-[10px]"
         />
       </div>
       <p className="flex text-center justify-center font-extralight text-gray-500">
@@ -115,7 +119,7 @@ const AuthForm = () => {
             {!isLogin ? "Login" : "SignUp"}
           </strong>
         </p>
-        <Button text={!isLogin ? "SignUp" : "Login"} type="submit" />
+        <Button title={!isLogin ? "SignUp" : "Login"} type="submit" variant='outline' className="w-full"/>
       </form>
       <p className="font-light text-center text-gray-600 text-sm">
         By signing up, you agree to accept our terms and conditions.

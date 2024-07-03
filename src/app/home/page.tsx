@@ -1,5 +1,5 @@
 import React from 'react'
-import NavBar from '@/app/containers/Navbar/navbar'
+import NavBar from '@/containers/Navbar/navbar'
 import IncomeExpenseForm from './_components/income-expense-form'
 
 const HomeRoute = () => {

@@ -1,6 +1,6 @@
 import React from 'react'
 
-import AuthForm from './containers/AuthContainer/authform'
+import AuthForm from '@/containers/AuthContainer/authform'
 
 const page = () => {
   return (

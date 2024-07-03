@@ -3,7 +3,7 @@ import React from 'react'
 const NavBar = () => {
   return (
     //TODO: fix this shit! add icons for csv and dark mode, add other fields aswell
-    <div className='w-full flex h-[70px] bg-white items-center gap-[50px]'>
+    <div className='w-full flex h-[70px] bg-white items-center gap-[50px] shadow-md '>
         <p className='ml-[30px]'>Welcome, <strong>Username</strong></p>
         <div className='flex '>
         <p>Upload CSV</p>
