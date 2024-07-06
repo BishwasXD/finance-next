@@ -5,22 +5,25 @@ import axios from "axios";
 import { getIncomeUrl, getExpenseUrl } from "@/requests/financeRequests";
 import DonutChart from "@/components/ui/donut-chart";
 
+
 const Donut = () => {
-  const [incomeChartData, setIncomeChartData] = useState<object>({});
-  const [expenseChartData, setExpenseData] = useState<object>({});
+  const [incomeChartData, setIncomeChartData] = useState({  });
+  const [expenseChartData, setExpenseChartData] = useState({  });
 
   const getChartData = async () => {
     try {
       const incomeData = await axios.get(getIncomeUrl);
       const incomeChart = generateChartData(incomeData.data);
       setIncomeChartData(incomeChart);
+
       const expenseData = await axios.get(getExpenseUrl);
       const expenseChart = generateChartData(expenseData.data);
-      setExpenseData(expenseChart);
+      setExpenseChartData(expenseChart);
     } catch (err) {
       console.log(err);
     }
   };
+
   useEffect(() => {
     getChartData();
   }, []);
@@ -33,28 +36,26 @@ const Donut = () => {
   };
 
   return (
-    <>
-      <div className="flex flex-row gap-[20px] px-[40px] py-[40px] border-2">
-        <div className="flex flex-col gap-[10px] justify-center items-center border-2">
-          <p className="text-green-400">Income</p>
-          <DonutChart
-            options={incomeChartData}
-            series={incomeChartData.series}
-            width={350}
-            height={350}
-          />
-        </div>
-        <div className="flex flex-col gap-[10px] border-2">
-          <p className="text-red-400 text-center">Expense</p>
-          <DonutChart
-            options={expenseChartData}
-            series={expenseChartData.series}
-            width={350}
-            height={350}
-          />
-        </div>
+    <div className="flex flex-col gap-[20px] px-[20px] py-[40px] w-1/4">
+      <div className="flex flex-col gap-[10px]  p-[10px] ">
+        <p className="text-green-400 text-center">Income</p>
+        <DonutChart
+          options={incomeChartData}
+          series={incomeChartData.series}
+          width={350}
+          height={350}
+        />
       </div>
-    </>
+      <div className="flex flex-col gap-[10px]  p-[10px]">
+        <p className="text-red-400 text-center">Expense</p>
+        <DonutChart
+          options={expenseChartData}
+          series={expenseChartData.series}
+          width={350}
+          height={350}
+        />
+      </div>
+    </div>
   );
 };
 
