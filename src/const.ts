@@ -1,10 +1,10 @@
-interface PreferencesOption {
+export interface IPreferencesOption {
   category: string;
   id: string;
   checked: boolean;
 }
 
-export const expensePreferencesOptions: PreferencesOption[] = [
+export const expensePreferencesOptions: IPreferencesOption[] = [
   { category: "Groceries", id: "1", checked: false },
   { category: "Bills", id: "2", checked: false },
   { category: "Rent", id: "3", checked: false },
@@ -17,7 +17,7 @@ export const expensePreferencesOptions: PreferencesOption[] = [
   { category: "Travel", id: "10", checked: false },
 ];
 
-export const incomePreferencesOptions: PreferencesOption[] = [
+export const incomePreferencesOptions: IPreferencesOption[] = [
   { category: "Salary", id: "1", checked: false },
   { category: "Freelancing", id: "2", checked: false },
   { category: "Investments", id: "3", checked: false },
@@ -27,7 +27,7 @@ export const incomePreferencesOptions: PreferencesOption[] = [
   { category: "Royalties", id: "7", checked: false },
   { category: "Grants", id: "8", checked: false },
   { category: "Gifts", id: "9", checked: false },
-  { category: "Other", id: "10", checked: false },
+  { category: "Other", id: "10", checked: true },
 ];
 
 export const budgetPreferncesOptions = [
