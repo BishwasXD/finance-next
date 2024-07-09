@@ -6,7 +6,7 @@ interface IDonutProps{
     options:object,
     height?:number,
     width?:number,
-    series : any[]
+    series : number[]
 }
 
 const DonutChart = ({options, series, height, width}:IDonutProps) => {
