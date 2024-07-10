@@ -6,9 +6,11 @@ import Donut from "./_components/donut-chart";
 const HomeRoute = () => {
   return (
     <div>
+     
       <NavBar />
       <IncomeExpenseForm />
       <Donut />
+     
     </div>
   );
 };

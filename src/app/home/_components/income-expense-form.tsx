@@ -78,7 +78,7 @@ const IncomeExpenseForm = () => {
   };
 
   return (
-    <div className="flex flex-col gap-[20px] bg-white px-[30px] py-[40px] mt-[20px] ml-[20px] rounded-lg shadow-md w-[440px] border-2">
+    <div className="flex flex-col gap-[20px] bg-white px-[30px] py-[40px] mt-[20px] ml-[20px] rounded-lg shadow-md w-[440px] border-2 dark:bg-dark_mode">
       <div className="flex justify-center">
         <p
           onClick={() => setFormState((prevstate) => !prevstate)}

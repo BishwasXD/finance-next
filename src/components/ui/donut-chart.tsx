@@ -11,7 +11,7 @@ interface IDonutProps{
 
 const DonutChart = ({options, series, height, width}:IDonutProps) => {
   return (
-    <ReactApexChart options={options} series={series} height={height} width={width} type='donut' />
+    <ReactApexChart options={options} series={series} height={height} width={width} type='donut'/>
   )
 }
 

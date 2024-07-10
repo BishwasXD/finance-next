@@ -3,7 +3,10 @@ import React from "react";
 import { Upload, Download, ClipboardMinus, Moon, Sun } from "lucide-react";
 import axios from "axios";
 import { getCsvUrl } from "@/requests/financeRequests";
+import { useTheme } from "next-themes";
+
 const NavBar = () => {
+  const { theme, setTheme } = useTheme();
   const sendExportCsvRequest = async () => {
     try {
       const response = await axios.get(getCsvUrl, {
@@ -11,7 +14,6 @@ const NavBar = () => {
       });
 
       const blob = new Blob([response.data], { type: "text/csv" });
-      console.log(blob)
       const url = window.URL.createObjectURL(blob);
       const a = document.createElement("a");
       a.href = url;
@@ -23,8 +25,11 @@ const NavBar = () => {
       console.log(err);
     }
   };
+  const handleThemeSwitch = ()=>{
+    setTheme( theme === 'dark' ? 'light' :'dark')
+  }
   return (
-    <div className="w-full flex h-[70px] bg-white items-center gap-[150px] shadow-md justify-between px-[20px]">
+    <div className="w-full flex h-[70px] bg-white items-center gap-[150px] shadow-md justify-between px-[20px] dark:bg-dark_mode">
       <p className="ml-[30px]">
         Welcome, <strong>Username</strong>
       </p>
@@ -44,7 +49,7 @@ const NavBar = () => {
           <ClipboardMinus />
           <p>Report</p>
         </div>
-        <div className="flex items-center gap-[10px] cursor-pointer">
+        <div className="flex items-center gap-[10px] cursor-pointer" onClick={handleThemeSwitch}>
           <Sun />
           <p className="text-sm">Dark</p>
         </div>
