@@ -50,8 +50,8 @@ const NavBar = () => {
           <p>Report</p>
         </div>
         <div className="flex items-center gap-[10px] cursor-pointer" onClick={handleThemeSwitch}>
-          <Sun />
-          <p className="text-sm">Dark</p>
+          {theme === 'light' ? <Moon /> : <Sun/>}
+          <p className="text-sm">{theme === 'light' ? 'Dark' : 'Light'}</p>
         </div>
       </div>
       <div className="flex flex-col justify-end">

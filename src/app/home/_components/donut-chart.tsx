@@ -53,6 +53,7 @@ const Donut = () => {
           series={expenseChartData.series}
           width={350}
           height={350}
+          
         />
       </div>
     </div>

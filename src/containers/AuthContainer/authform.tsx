@@ -10,7 +10,6 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import z from "zod";
 import axios from "axios";
 import { signUpUrl, loginUrl } from "../../requests/authFormRequests";
-import { signIn } from 'next-auth/react';
 
 const AuthForm = () => {
   const [isLogin, setIsLogin] = useState<boolean>(false);
@@ -47,13 +46,13 @@ const AuthForm = () => {
   };
 
     const handleGoogleSignIn = () => {
-      signIn('google');
-
+     
+console.log('handle goog le sign in')
     };
   
   
   return (
-    <div className="flex flex-col gap-[20px] bg-white px-[30px] py-[40px] mt-[20px] mr-[20px] rounded-lg shadow-md float-end w-[565px]">
+    <div className="flex flex-col gap-[20px] bg-white px-[30px] py-[40px] mt-[20px] mr-[20px] rounded-lg shadow-md float-end w-[565px] dark:bg-dark_mode dark:border border-black">
       <div className="flex flex-col text-center gap-[14px]">
         <p className="font-bold ">Welcome to Track My Finance</p>
         <p className="text-sm text-gray-600">

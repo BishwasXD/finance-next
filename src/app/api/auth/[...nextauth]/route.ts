@@ -1,9 +1,9 @@
-import NextAuth from "next-auth";
-import { NextAuthOptions } from "next-auth";
-
 import GoogleProvider from "next-auth/providers/google";
+import { NextAuthOptions } from "next-auth";
+import NextAuth from "next-auth/next";
 
-export const authOptions: NextAuthOptions = {
+const authOption: NextAuthOptions = {
+  debug: true,
   session: {
     strategy: "jwt",
   },
@@ -14,14 +14,18 @@ export const authOptions: NextAuthOptions = {
     }),
   ],
   callbacks: {
-    async redirect({ url, baseUrl }) {
-      const redirectUrl = url.startsWith(baseUrl) ? url : baseUrl;
-
-      return redirectUrl;
+    signIn({ account, profile, email, credentials }) {
+      try {
+        const accessToken = account?.access_token;
+        console.log('AccessToken:', accessToken);
+        return true;
+      } catch (error) {
+        console.error('SignIn error:', error);
+        return false;
+      }
     },
   },
-  debug: true,
 };
 
-const handler = NextAuth(authOptions);
+const handler = NextAuth(authOption);
 export { handler as GET, handler as POST };
