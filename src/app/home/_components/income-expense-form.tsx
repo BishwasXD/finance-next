@@ -42,7 +42,9 @@ const IncomeExpenseForm = () => {
     "Dining Out",
     "Education",
     "Miscellaneous",
-  ];
+  ]; 
+  const token = sessionStorage.getItem('accessToken');
+  console.log('user token',token);
 
   const [formState, setFormState] = useState<boolean>(false);
 
@@ -60,7 +62,11 @@ const IncomeExpenseForm = () => {
     try {
       const response = await axios.post(
         formState ? addIncomeUrl : addExpenseUrl,
-        formData
+        formData,{
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
       );
       console.log(response);
     } catch (error) {

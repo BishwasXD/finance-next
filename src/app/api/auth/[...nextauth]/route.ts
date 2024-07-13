@@ -1,6 +1,7 @@
 import GoogleProvider from "next-auth/providers/google";
 import { NextAuthOptions } from "next-auth";
 import NextAuth from "next-auth/next";
+import axios from "axios";
 
 const authOption: NextAuthOptions = {
   debug: true,
@@ -14,10 +15,13 @@ const authOption: NextAuthOptions = {
     }),
   ],
   callbacks: {
-    signIn({ account, profile, email, credentials }) {
+    async signIn({ profile }) {
       try {
-        const accessToken = account?.access_token;
-        console.log('AccessToken:', accessToken);
+
+        const res = await axios.post('http://127.0.0.1:8000/accounts/google-login', {'email':profile?.email})
+        console.log(res)
+        sessionStorage.setItem('accessToken', res.data.token.access)
+        localStorage.setItem('refereshToken', res.data.token.refersh)
         return true;
       } catch (error) {
         console.error('SignIn error:', error);

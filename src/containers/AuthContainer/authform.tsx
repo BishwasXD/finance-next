@@ -39,18 +39,18 @@ const AuthForm = () => {
             }
           : { email: email, password: password }
       );
-    
+      sessionStorage.setItem("accessToken", res.data.token.access);
+      localStorage.setItem("refereshToken", res.data.token.refersh);
+      console.log('done')
     } catch (error) {
-      
+      console.log(error)
     }
   };
 
-    const handleGoogleSignIn = () => {
-     
-console.log('handle goog le sign in')
-    };
-  
-  
+  const handleGoogleSignIn = () => {
+    console.log("handle goog le sign in");
+  };
+
   return (
     <div className="flex flex-col gap-[20px] bg-white px-[30px] py-[40px] mt-[20px] mr-[20px] rounded-lg shadow-md float-end w-[565px] dark:bg-dark_mode dark:border border-black">
       <div className="flex flex-col text-center gap-[14px]">
@@ -63,14 +63,14 @@ console.log('handle goog le sign in')
       <div className="flex gap-4 items-center justify-center">
         <Button
           title="Sign Up with Facebook"
-          icon={<LinkedinIcon/>}
-          variant='outline'
+          icon={<LinkedinIcon />}
+          variant="outline"
           className="flex gap-[10px]"
         />
         <Button
           title="Sign Up with Google"
-          icon={<LinkedinIcon  />}
-          variant='outline'
+          icon={<LinkedinIcon />}
+          variant="outline"
           className="flex gap-[10px]"
           onClick={handleGoogleSignIn}
         />
@@ -126,7 +126,12 @@ console.log('handle goog le sign in')
             {!isLogin ? "Login" : "SignUp"}
           </strong>
         </p>
-        <Button title={!isLogin ? "SignUp" : "Login"} type="submit" variant='outline' className="w-full"/>
+        <Button
+          title={!isLogin ? "SignUp" : "Login"}
+          type="submit"
+          variant="outline"
+          className="w-full"
+        />
       </form>
       <p className="font-light text-center text-gray-600 text-sm">
         By signing up, you agree to accept our terms and conditions.
