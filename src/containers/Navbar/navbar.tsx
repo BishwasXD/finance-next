@@ -1,5 +1,5 @@
 "use client";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Upload, Download, ClipboardMinus, Moon, Sun } from "lucide-react";
 import axios from "axios";
 import { getCsvUrl } from "@/requests/financeRequests";
@@ -7,6 +7,12 @@ import { useTheme } from "next-themes";
 
 const NavBar = () => {
   const { theme, setTheme } = useTheme();
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
   const sendExportCsvRequest = async () => {
     try {
       const response = await axios.get(getCsvUrl, {
@@ -25,13 +31,17 @@ const NavBar = () => {
       console.log(err);
     }
   };
-  const handleThemeSwitch = ()=>{
-    setTheme( theme === 'dark' ? 'light' :'dark')
-  }
+
+  const handleThemeSwitch = () => {
+    setTheme(theme === "dark" ? "light" : "dark");
+  };
+
+  if (!mounted) return null; 
+
   return (
     <div className="w-full flex h-[70px] bg-white items-center gap-[150px] shadow-md justify-between px-[20px] dark:bg-dark_mode">
       <p className="ml-[30px]">
-        Welcome, <strong>Username</strong>
+        Welcome, <strong>{localStorage.getItem('email')?.split('@')[0]}</strong>
       </p>
       <div className="flex gap-[40px]">
         <div className="flex items-center gap-[10px] cursor-pointer">
@@ -49,14 +59,17 @@ const NavBar = () => {
           <ClipboardMinus />
           <p>Report</p>
         </div>
-        <div className="flex items-center gap-[10px] cursor-pointer" onClick={handleThemeSwitch}>
-          {theme === 'light' ? <Moon /> : <Sun/>}
-          <p className="text-sm">{theme === 'light' ? 'Dark' : 'Light'}</p>
+        <div
+          className="flex items-center gap-[10px] cursor-pointer"
+          onClick={handleThemeSwitch}
+        >
+          {theme === "light" ? <Moon /> : <Sun />}
+          <p className="text-sm">{theme === "light" ? "Dark" : "Light"}</p>
         </div>
       </div>
       <div className="flex flex-col justify-end">
-        <p className="text-green-500">Income:100</p>
-        <p className="text-red-500">Expense:1000</p>
+        <p className="text-green-500">Income: 100</p>
+        <p className="text-red-500">Expense: 1000</p>
       </div>
     </div>
   );

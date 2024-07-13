@@ -7,8 +7,16 @@ import DonutChart from "@/components/ui/donut-chart";
 
 
 const Donut = () => {
-  const [incomeChartData, setIncomeChartData] = useState({  });
-  const [expenseChartData, setExpenseChartData] = useState({  });
+  interface IchartData{
+  labels: string[]
+  series: number[]
+  }
+  const chartDefault = {
+    labels:['random_label'],
+    series:[1]
+  }
+  const [incomeChartData, setIncomeChartData] = useState<IchartData>(chartDefault);
+  const [expenseChartData, setExpenseChartData] = useState<IchartData>(chartDefault);
 
   const getChartData = async () => {
     try {

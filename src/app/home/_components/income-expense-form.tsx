@@ -43,7 +43,7 @@ const IncomeExpenseForm = () => {
     "Education",
     "Miscellaneous",
   ]; 
-  const token = sessionStorage.getItem('accessToken');
+  const token = localStorage.getItem('accessToken');
   console.log('user token',token);
 
   const [formState, setFormState] = useState<boolean>(false);
