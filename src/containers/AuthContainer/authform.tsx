@@ -14,27 +14,36 @@ import { signUpUrl, loginUrl } from "../../requests/authFormRequests";
 
 const AuthForm = () => {
   const [isLogin, setIsLogin] = useState(true);
-  const form = useForm();
+  let formSchema = z.object({
+    email: emailSchema,
+    password: passwordSchema,
+  });
+  if (!isLogin) {
+    formSchema = formSchema.extend({
+      confirm_password: passwordSchema,
+    });
+  }
+  const defaultFormValues = {
+    email: "",
+    password: "",
+    confirm_password: "",
+  };
+
+  type IformType = z.infer<typeof formSchema>;
+  const form = useForm<IformType>({
+    defaultValues: defaultFormValues,
+    resolver: zodResolver(formSchema),
+  });
   const router = useRouter();
 
-  const onSubmit = async () => {
-    const { confirmPassword, password, email } = form.getValues();
-
+  const onSubmit = async (data: IformType) => {
+    console.log(data);
     try {
-      const res = await axios.post(
-        isLogin ? loginUrl : signUpUrl,
-        isLogin
-          ? { email: email, password: password }
-          : {
-              email: email,
-              password: password,
-              confirm_password: confirmPassword,
-            }
-      );
+      const res = await axios.post(isLogin ? loginUrl : signUpUrl, data);
       console.log(res.data.token.access);
       localStorage.setItem("accessToken", res.data.token.access);
       localStorage.setItem("refreshToken", res.data.token.refresh);
-      localStorage.setItem("email", email);
+      localStorage.setItem("email", form.getValues("email"));
       router.push("/home");
     } catch (error) {
       console.log(error);
@@ -42,7 +51,6 @@ const AuthForm = () => {
   };
 
   return (
-    
     <div className="flex flex-col gap-[20px] bg-white px-[30px] py-[40px] mt-[20px] mr-[20px] rounded-lg shadow-md float-end w-[565px] dark:bg-dark_mode dark:border border-black">
       <div className="flex flex-col text-center gap-[14px]">
         <p className="font-bold">Welcome to Track My Finance</p>
@@ -67,7 +75,7 @@ const AuthForm = () => {
           </div>
 
           <div>
-            <label htmlFor = "password" className="text-sm" >
+            <label htmlFor="password" className="text-sm">
               Password
             </label>
             <Input
@@ -79,12 +87,12 @@ const AuthForm = () => {
           </div>
           {!isLogin && (
             <div>
-              <label htmlFor="confirm-password" className="text-sm">
+              <label htmlFor="confirm_password" className="text-sm">
                 Confirm Password
               </label>
               <Input
-                {...form.register("confirmPassword")}
-                id="confirm-password"
+                {...form.register("confirm_password")} //why this throws error
+                id="confirm_password"
                 type="password"
                 placeholder="Confirm Password"
               />
@@ -111,7 +119,6 @@ const AuthForm = () => {
         By signing up, you agree to accept our terms and conditions.
       </p>
     </div>
-
   );
 };
 
