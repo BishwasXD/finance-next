@@ -91,7 +91,7 @@ const AuthForm = () => {
                 Confirm Password
               </label>
               <Input
-                {...form.register("confirm_password")} //why this throws error
+                {...form.register("confirm_password")} 
                 id="confirm_password"
                 type="password"
                 placeholder="Confirm Password"
