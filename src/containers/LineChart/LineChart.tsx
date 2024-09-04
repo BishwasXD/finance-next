@@ -2,6 +2,7 @@
 import React, { useEffect, useState } from "react";
 import Plot from "react-plotly.js";
 import axios from "axios";
+import { backendRequests } from "@/request";
 
 const LineChart = () => {
   const [incomeData, setIncomeData] = useState([]);
@@ -14,7 +15,7 @@ const LineChart = () => {
   const fetchData = async () => {
     try {
       const response = await axios.get(
-        "http://127.0.0.1:8000/core/get-line-chart"
+        backendRequests.getLineChartDataUrl
       );
       setIncomeData(response.data.data.income);
       setExpenseData(response.data.data.expense);
