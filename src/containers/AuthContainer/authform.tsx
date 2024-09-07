@@ -10,7 +10,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import z from "zod";
 import axios from "axios";
 import { useRouter } from "next/navigation";
-import { signUpUrl, loginUrl } from "../../requests/authFormRequests";
+import { backendRequests } from "@/request";
 
 const AuthForm = () => {
   const [isLogin, setIsLogin] = useState(true);
@@ -39,7 +39,7 @@ const AuthForm = () => {
   const onSubmit = async (data: IformType) => {
     console.log(data);
     try {
-      const res = await axios.post(isLogin ? loginUrl : signUpUrl, data);
+      const res = await axios.post(isLogin ? backendRequests.loginUrl : backendRequests.signUpUrl, data);
       console.log(res.data.token.access);
       localStorage.setItem("accessToken", res.data.token.access);
       localStorage.setItem("refreshToken", res.data.token.refresh);
@@ -47,7 +47,7 @@ const AuthForm = () => {
       router.push("/home");
     } catch (error) {
       console.log(error);
-    }
+    } 
   };
 
   return (

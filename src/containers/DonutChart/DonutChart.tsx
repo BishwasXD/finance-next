@@ -25,12 +25,12 @@ const DonutChart = () => {
     labels: ["Income", "Expense"],
   } as ApexOptions;
   return (
-    <div>
+    <div className="flex border shadow-md px-[30px] py-[10px]">
       <ReactApexChart
         options={chartOptions}
         series={totalAmount}
         type="donut"
-        width={700}
+        width={547}
       />
     </div>
   );
