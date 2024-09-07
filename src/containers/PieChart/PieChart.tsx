@@ -39,9 +39,7 @@ const PieChart = () => {
     
             
         labels: incomeLabels,
-legend : {
-show:false
-}
+
 }as ApexOptions;
   return (
     <div className='flex gap-sm'>

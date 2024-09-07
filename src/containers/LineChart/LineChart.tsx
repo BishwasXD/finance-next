@@ -56,6 +56,7 @@ const LineChart = () => {
     },
     title: "Income vs Expense Trend",
     
+    
   };
 
   return (
