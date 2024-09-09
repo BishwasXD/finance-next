@@ -10,7 +10,7 @@ const DonutChart = () => {
 
   useEffect(() => {
     fetchData();
-  }, [totalAmount]);
+  }, []);
   const fetchData = async () => {
     try {
       const res = await axios.get(backendRequests.getDonutChartDataUrl);
@@ -25,12 +25,12 @@ const DonutChart = () => {
     labels: ["Income", "Expense"],
   } as ApexOptions;
   return (
-    <div className="flex border shadow-md px-[30px] py-[10px]">
+    <div className="flex border shadow-md px-[30px] ">
       <ReactApexChart
         options={chartOptions}
         series={totalAmount}
         type="donut"
-        width={547}
+        width={570}
       />
     </div>
   );

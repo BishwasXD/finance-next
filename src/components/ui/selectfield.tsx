@@ -5,10 +5,13 @@ import {
   TrendingUp,
   BadgeDollarSign,
 } from "lucide-react";
-
-const SelectField = () => {
-  // State to track the selected field
-  const [selectedField, setSelectedField] = useState(null);
+import { FieldType } from "@/containers/AddTransactionForm/AddTransactionForm";
+type SelectedFieldProps = {
+  selectedField: FieldType
+  setSelectedField: (val:FieldType) => void
+}
+const SelectField = ({setSelectedField, selectedField}:SelectedFieldProps) => {
+ 
 
   const fieldOptions = [
     {
@@ -32,8 +35,8 @@ const SelectField = () => {
       icon: <BadgeDollarSign className="text-yellow-500"/>,
     },
   ];
-  const handleSelect = (id:any) => {
-    setSelectedField(id);
+  const handleSelect = (title:FieldType) => {
+    setSelectedField(title);
   };
 
   return (
@@ -42,9 +45,9 @@ const SelectField = () => {
         <div key={item.id} className="">
           <div
             className={`flex gap-[5px] cursor-pointer py-[10px] px-[10px] ${
-              selectedField === item.id ? "bg-white border-r rounded-md" : ""
+              selectedField === item.title ? "bg-white border-r rounded-md" : ""
             }`} 
-            onClick={() => handleSelect(item.id)} 
+            onClick={() => handleSelect(item.title as FieldType)} 
           >
             {item.icon}
             <p>{item.title}</p>
