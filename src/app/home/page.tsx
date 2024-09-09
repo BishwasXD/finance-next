@@ -12,7 +12,7 @@ const HomeRoute = () => {
      <div className="flex flex-col gap-[20px]">
       <NavBar />
       <SummaryCards/>
-      <div className="flex">
+      <div className="flex gap-[50px]">
       <AddTransactionForm/>
       <DonutChart/>
       </div>

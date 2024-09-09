@@ -30,7 +30,7 @@ const DonutChart = () => {
         options={chartOptions}
         series={totalAmount}
         type="donut"
-        width={570}
+        width={590}
       />
     </div>
   );
