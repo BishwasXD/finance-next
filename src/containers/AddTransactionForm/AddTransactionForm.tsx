@@ -97,7 +97,7 @@ const AddTransactionForm = () => {
               {errors.category && (
                 <p className="text-red-500 text-sm">
                   {errors.category?.message}
-                </p> //TODO: works but need to look in to it
+                </p> //TODO: works but need to look the error showing
               )}
             </Select>
             <Input

@@ -4,6 +4,7 @@ import SideBarContainer from "@/containers/SideBarContainer/SideBarContainer";
 import SummaryCards from "@/components/ui/summarycard";
 import AddTransactionForm from "@/containers/AddTransactionForm/AddTransactionForm";
 import DonutChart from "@/containers/DonutChart/DonutChart";
+import TransactionsSummaryTable from "@/containers/TransactionsSummaryTable/TransactionsSummaryTable";
 
 const HomeRoute = () => {
   return (
@@ -16,6 +17,7 @@ const HomeRoute = () => {
       <AddTransactionForm/>
       <DonutChart/>
       </div>
+      <TransactionsSummaryTable/>
       </div>
     
      
