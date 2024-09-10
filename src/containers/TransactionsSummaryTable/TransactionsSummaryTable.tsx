@@ -9,6 +9,8 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
+import { NotebookPen,Trash } from 'lucide-react';
+
 import { useMemo, useEffect, useState } from "react";
 import axios from "axios";
 import { backendRequests } from "@/request";
@@ -32,10 +34,10 @@ fetchData()
   return (
     <div>
       <Table>
-        <TableCaption>A list of your recent invoices.</TableCaption>
+        <TableCaption>Your Transaction History.</TableCaption>
         <TableHeader>
           <TableRow>
-            <TableHead>S.N.</TableHead>
+            <TableHead>Index</TableHead>
             <TableHead>Type</TableHead>
             <TableHead>Category</TableHead>
             <TableHead>Amount</TableHead>
@@ -52,8 +54,8 @@ fetchData()
                 <TableCell>{item.field}</TableCell>
                 <TableCell>{item.category}</TableCell>
                 <TableCell>{item.amount}</TableCell>
-                <TableCell>{item.date}</TableCell>
-                <TableCell>{item.description}</TableCell>
+                <TableCell>{item.date.split('T')[0]}</TableCell>
+                <TableCell><div className="flex gap-[20px] cursor-pointer"><NotebookPen className="text-blue-600 hover:text-blue-400" /><Trash className="text-red-600 hover:text-red-400"/></div></TableCell>
               
            
           </TableRow>
