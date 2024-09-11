@@ -51,7 +51,6 @@ const AddTransactionForm = () => {
     setValue,
     formState: { errors },
   } = form;
-  console.log("ERROR", errors.category?.message);
   const onSubmit = (data: any) => {
     console.log("form submitted", data);
   };
@@ -68,6 +67,7 @@ const AddTransactionForm = () => {
                 setSelectedDate(selectedDate);
                 setValue("date", selectedDate);
               }}
+              triggerClassName="w-full"
             />
             <Input
               placeholder="Add amount..."

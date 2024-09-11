@@ -65,7 +65,7 @@ type DatepickerProps = {
                 triggerClassName,
                 !date && "text-muted-foreground",
               )}
-           
+              variant='secondary'
             >
               <CalendarIcon className="w-4 h-4 mr-2" />
               {date ? format(date, "PPP") : <span>Pick a Date</span>}
