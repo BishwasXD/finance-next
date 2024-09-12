@@ -56,58 +56,59 @@ const AddTransactionForm = () => {
   };
 
   return (
-    <div className="pl-[150px]">
-      <div className="w-[650px] border shadow-md px-[40px] py-[50px] rounded-md">
-        <form onSubmit={handleSubmit(onSubmit)}>
-          <div className="flex flex-col gap-[20px]">
-            <Datepicker
-              className="!bg-white"
-              date={date}
-              handleDateSelection={(selectedDate) => {
-                setSelectedDate(selectedDate);
-                setValue("date", selectedDate);
-              }}
-              triggerClassName="w-full"
-            />
-            <Input
-              placeholder="Add amount..."
-              {...form.register("amount", { valueAsNumber: true })}
-              type="number"
-            />{" "}
-            {errors.amount && (
-              <p className="text-red-500 text-sm">{errors?.amount?.message}</p>
+    <div className="w-[660px] border shadow-md px-10 py-10 rounded-md">
+      <p className="text-blue-500 mb-12 items-center justify-center font-semibold inline-block">
+        Add your Transaction
+        <span className="block h-[2px] w-full bg-blue-300 mt-1"></span>
+      </p>
+
+      <form onSubmit={handleSubmit(onSubmit)}>
+        <div className="flex flex-col gap-[20px]">
+          <Datepicker
+            className="!bg-white"
+            date={date}
+            handleDateSelection={(selectedDate) => {
+              setSelectedDate(selectedDate);
+              setValue("date", selectedDate);
+            }}
+            triggerClassName="w-full"
+          />
+          <Input
+            placeholder="Add amount..."
+            {...form.register("amount", { valueAsNumber: true })}
+            type="number"
+          />{" "}
+          {errors.amount && (
+            <p className="text-red-500 text-sm">{errors?.amount?.message}</p>
+          )}
+          <SelectField
+            selectedField={selectedField}
+            setSelectedField={setSelectedField}
+          />
+          <Select onValueChange={(value) => setValue("category", value)}>
+            <SelectTrigger className="w-full">
+              <SelectValue placeholder="Category" />
+            </SelectTrigger>
+            <SelectContent>
+              {CategoriesOptions[selectedField].map((item) => (
+                <SelectItem key={item.name} value={item.name}>
+                  <div className="flex gap-[5px] px-[5px] cursor:pointer">
+                    {item.icon} <p>{item.name}</p>
+                  </div>
+                </SelectItem>
+              ))}
+            </SelectContent>
+            {errors.category && (
+              <p className="text-red-500 text-sm">{errors.category?.message}</p> //TODO: works but need to look the error showing
             )}
-            <SelectField
-              selectedField={selectedField}
-              setSelectedField={setSelectedField}
-            />
-            <Select onValueChange={(value) => setValue("category", value)}>
-              <SelectTrigger className="w-full">
-                <SelectValue placeholder="Category" />
-              </SelectTrigger>
-              <SelectContent>
-                {CategoriesOptions[selectedField].map((item) => (
-                  <SelectItem key={item.name} value={item.name}>
-                    <div className="flex gap-[5px] px-[5px] cursor:pointer">
-                      {item.icon} <p>{item.name}</p>
-                    </div>
-                  </SelectItem>
-                ))}
-              </SelectContent>
-              {errors.category && (
-                <p className="text-red-500 text-sm">
-                  {errors.category?.message}
-                </p> //TODO: works but need to look the error showing
-              )}
-            </Select>
-            <Input
-              placeholder="Add description..."
-              {...register("description")}
-            />
-            <Button title="Add Transaction" type="submit" />
-          </div>
-        </form>
-      </div>
+          </Select>
+          <Input
+            placeholder="Add description..."
+            {...register("description")}
+          />
+          <Button title="Add Transaction" type="submit" />
+        </div>
+      </form>
     </div>
   );
 };

@@ -22,7 +22,7 @@ if (isError){
 
 const tableColumn = ['Index','Type','Category','Amount','Date','Actions']
   return (
-    <div>
+    <div className="w-full">
       <Table>
         <TableCaption>Your Transaction History.</TableCaption>
         <TableHeader> 

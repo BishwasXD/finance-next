@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { fetchChartData } from "@/services/donutChartService";
-import { TSummaryTable } from "@/types";
+
 
 //states needed: loading, error, data
 export function useDonutChart() {

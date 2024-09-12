@@ -7,3 +7,7 @@ export type TSummaryTable = {
     date: Date
 
 }
+
+export type TDonutChartData = {
+    
+}

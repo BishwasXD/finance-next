@@ -18,20 +18,20 @@ const SideBarContainer = () => {
     {
       id: 3,
       name: "Report",
-      icon: <ClipboardMinus />,
+      icon: <ClipboardMinus className="tetx-center"/>,
     },
   ];
   return (
-    <div className="w-[200px] border-r-2  border-gray-700  bg-white h-[700px] flex flex-col items-center gap-[100px] py-[20px] ">
-      <div className="border border-gray-400 rounded-full items-center py-[20px] px-[20px] cursor-pointer hover:bg-gray-100">
-        <Wallet className="h-[80px] w-[80px]" />
-      </div>
+    <div className="w-[100px] border-r  bg-white h-[700px] flex flex-col items-center  py-5 px-4">
+      {/* <div className="border border-gray-400 rounded-full items-center py-[20px] px-[20px] cursor-pointer hover:bg-gray-100">
+        <Wallet className="h-20 w-20 text-green-500" />
+      </div> */}
 
-      <div className="flex flex-col gap-[50px] cursor-pointer">
+      <div className="flex flex-col gap-10 cursor-pointer">
         {sideBarItems.map((item) => (
-          <div className="flex gap-[54px] cursor-pointer ">
+          <div className="flex flex-col cursor-pointer items-center gap-2">
             {item.icon}
-            <h3 className="font-bold">{item.name}</h3>
+            <h3 className="">{item.name}</h3>
           </div>
         ))}
       </div>
