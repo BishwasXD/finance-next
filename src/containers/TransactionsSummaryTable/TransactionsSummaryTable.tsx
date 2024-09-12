@@ -15,6 +15,7 @@ import { useTransactionTable } from "@/hooks/useTransactionTable";
 const TransactionsSummaryTable = () => {
 
 const {data, isError, isLoading} = useTransactionTable()
+
 if (isError){
   return  <div>Something went wrong, try refreshing</div>
 }

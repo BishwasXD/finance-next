@@ -1,37 +1,31 @@
-'use client'
-import axios from "axios";
+"use client";
 import React from "react";
-import { useState, useEffect } from "react";
-import { backendRequests } from "@/request";
 import ReactApexChart from "react-apexcharts";
 import { ApexOptions } from "apexcharts";
+import { useDonutChart } from "@/hooks/useDonutChart";
 const DonutChart = () => {
-  const [totalAmount, setTotalAmount] = useState([50, 50]);
+  const { data, isError, isLoading } = useDonutChart();
 
-  useEffect(() => {
-    fetchData();
-  }, []);
-  const fetchData = async () => {
-    try {
-      const res = await axios.get(backendRequests.getDonutChartDataUrl);
-      const total = [res.data.data[0].Income, res.data.data[1].Expense];
-      setTotalAmount(total);
-    } catch (error) {
-      console.log("Error Occured", error);
-    }
-  };
+  if (isError) {
+    return <p>Something went wrong, try refreshing or praying</p>;
+  }
 
   const chartOptions = {
     labels: ["Income", "Expense"],
   } as ApexOptions;
+
   return (
     <div className="flex border shadow-md px-[30px] ">
-      <ReactApexChart
-        options={chartOptions}
-        series={totalAmount}
-        type="donut"
-        width={590}
-      />
+      {!isLoading ? (
+        <ReactApexChart
+          options={chartOptions}
+          series={data}
+          type="donut"
+          width={590}
+        />
+      ) : (
+        <p>Loading...</p>
+      )}
     </div>
   );
 };
