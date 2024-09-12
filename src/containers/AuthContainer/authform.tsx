@@ -2,7 +2,6 @@
 import React from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { passwordSchema, emailSchema } from "../../schema/authFormSchema";
