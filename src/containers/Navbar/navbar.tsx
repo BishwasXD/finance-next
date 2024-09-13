@@ -39,7 +39,7 @@ const NavBar = () => {
   if (!mounted) return null;
 
   return (
-<div className="flex  bg-white px-[20px] dark:bg-dark_mode fixed right-0 top-0 left-[100px] justify-end  overflow-hidden border-b">
+<div className="flex  bg-white px-[20px] dark:bg-dark_mode fixed right-0 top-0 z-[50] left-[100px] justify-end  overflow-hidden border-b">
   <div className="flex gap-[40px] items-center">
     <div className="flex items-center gap-[10px] cursor-pointer">
       <Upload />

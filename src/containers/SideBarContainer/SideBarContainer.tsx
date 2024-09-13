@@ -18,11 +18,11 @@ const SideBarContainer = () => {
     {
       id: 3,
       name: "Report",
-      icon: <ClipboardMinus className="tetx-center"/>,
+      icon: <ClipboardMinus/>,
     },
   ];
   return (
-    <div className="w-[100px] border-r  bg-white h-[700px] flex flex-col items-center  py-5 px-4">
+    <div className="w-[100px] bg-white h-100% flex flex-col items-center  py-5 px-4">
       {/* <div className="border border-gray-400 rounded-full items-center py-[20px] px-[20px] cursor-pointer hover:bg-gray-100">
         <Wallet className="h-20 w-20 text-green-500" />
       </div> */}

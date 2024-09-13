@@ -11,7 +11,7 @@ import {
 } from "@/components/ui/table";
 import { NotebookPen, Trash } from "lucide-react";
 import { useTransactionTable } from "@/hooks/useTransactionTable";
-
+import { Button } from "@/components/ui/button";
 const TransactionsSummaryTable = () => {
 
 const {data, isError, isLoading} = useTransactionTable()
@@ -22,16 +22,19 @@ if (isError){
 
 const tableColumn = ['Index','Type','Category','Amount','Date','Actions']
   return (
-    <div className="w-full">
+    <div className="w-full flex flex-col items-center justify-center py-10 gap-4">
+     <p className="text-blue-500 items-center justify-center font-semibold inline-block">
+        Your Transaction History
+        <span className="block h-[2px] w-full bg-blue-300 mt-1"></span>
+      </p>
       <Table>
-        <TableCaption>Your Transaction History.</TableCaption>
         <TableHeader> 
           <TableRow>
            {tableColumn.map((item)=><TableHead>{item}</TableHead>)}
           </TableRow>
         </TableHeader>
         <TableBody>
-          {!isLoading ? data?.map((item, index) => (
+          {!isLoading ? data?.slice(0,5).map((item, index) => (
             <TableRow>
               <TableCell>{index}</TableCell>
               <TableCell>{item.field}</TableCell>
@@ -52,9 +55,11 @@ const tableColumn = ['Index','Type','Category','Amount','Date','Actions']
                 </div>
               </TableCell>
             </TableRow>
+
           )): <div>Loading...</div>}
         </TableBody>
       </Table>
+      <Button title="Show More"/>
     </div>
   );
 };

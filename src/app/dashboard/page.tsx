@@ -1,13 +1,13 @@
 import React from "react";
 import LineChart from "@/containers/LineChart/LineChart";
 import PieChart from "@/containers/PieChart/PieChart";
-import DonutChart from "@/containers/DonutChart/DonutChart";
+
 const DashboardRoute = () => {
   return (
-    <div>
+    <div className="flex flex-col gap-10 w-full py-10">
       <LineChart />
       <PieChart />
-      <DonutChart/>
+  
     </div>
   );
 };

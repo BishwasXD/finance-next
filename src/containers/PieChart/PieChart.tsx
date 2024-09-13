@@ -42,11 +42,25 @@ const PieChart = () => {
 
 }as ApexOptions;
   return (
-    <div className='flex gap-sm'>
-      
-    <ReactApexChart  options={expenseOptions} series={expenseAmount}  type='pie' width={500}/>
-    <ReactApexChart  options={incomeOptions} series={incomeAmount}  type='pie' width={500}/>
+    <div className="flex gap-24">
+    <div className="bg-white shadow-md rounded-md p-4">
+    <p className="text-blue-500 mb items-center justify-center font-semibold inline-block">
+        Expense Breakdown
+        <span className="block h-[2px] w-full bg-blue-300 mt-1"></span>
+      </p>
+      <ReactApexChart options={expenseOptions} series={expenseAmount} type="pie" width={600} />
     </div>
+  
+
+    <div className="bg-white shadow-md rounded-md p-4">
+    <p className="text-blue-500 mb items-center justify-center font-semibold inline-block">
+        Income Breakdown
+        <span className="block h-[2px] w-full bg-blue-300 mt-1"></span>
+      </p>
+      <ReactApexChart options={incomeOptions} series={incomeAmount} type="pie" width={600} />
+    </div>
+  </div>
+  
   )
 }
 

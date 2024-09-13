@@ -47,6 +47,7 @@ const LineChart = () => {
   ];
 
   const layout = {
+    
     xaxis: {
       type: "date" as "date",
       tickformat: "%b",
@@ -63,7 +64,10 @@ const LineChart = () => {
     <Plot
       data={data}
       layout={layout}
-     
+      config={{ displayModeBar:false,responsive: true, scrollZoom: false, staticPlot: false}}
+      style={{ width: "100%", minWidth: "300px", height: 500 }}
+      useResizeHandler={true}
+      className="bg-red-300"
     />
   );
 };
