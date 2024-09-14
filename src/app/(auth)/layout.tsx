@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
-import "./global.css";
+import '../global.css'
 import { ThemeProvider } from "next-themes";
 import SideBarContainer from "@/containers/SideBarContainer/SideBarContainer";
 import SummaryCards from "@/components/ui/summarycard";
@@ -20,7 +20,23 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={inter.className}>
-        <ThemeProvider attribute="class">{children}</ThemeProvider>
+        <ThemeProvider attribute="class">
+        <div className="flex flex-col gap-10">
+  <div>
+    <NavBar />
+    <div className="flex">
+      <SideBarContainer />
+      <div className="flex flex-col gap-5">
+        <SummaryCards />
+        <div className="px-36">
+        {children}
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+        </ThemeProvider>
       </body>
     </html>
   );

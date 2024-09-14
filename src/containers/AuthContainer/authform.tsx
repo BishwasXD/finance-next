@@ -10,7 +10,7 @@ import z from "zod";
 import axios from "axios";
 import { useRouter } from "next/navigation";
 import { backendRequests } from "@/request";
-
+import { FcGoogle } from "react-icons/fc";
 const AuthForm = () => {
   const [isLogin, setIsLogin] = useState(true);
   let formSchema = z.object({
@@ -38,7 +38,10 @@ const AuthForm = () => {
   const onSubmit = async (data: IformType) => {
     console.log(data);
     try {
-      const res = await axios.post(isLogin ? backendRequests.loginUrl : backendRequests.signUpUrl, data);
+      const res = await axios.post(
+        isLogin ? backendRequests.loginUrl : backendRequests.signUpUrl,
+        data
+      );
       console.log(res.data.token.access);
       localStorage.setItem("accessToken", res.data.token.access);
       localStorage.setItem("refreshToken", res.data.token.refresh);
@@ -46,12 +49,12 @@ const AuthForm = () => {
       router.push("/home");
     } catch (error) {
       console.log(error);
-    } 
+    }
   };
 
   return (
-    <div className="flex flex-col gap-[20px] bg-white px-[30px] py-[40px] mt-[20px] mr-[20px] rounded-lg shadow-md float-end w-[565px] dark:bg-dark_mode dark:border border-black">
-      <div className="flex flex-col text-center gap-[14px]">
+    <div className="flex flex-col gap-5  bg-white w-[500px] py-20 dark:bg-dark_mode dark:border border-black">
+      <div className="flex flex-col text-center gap-4">
         <p className="font-bold">Welcome to Track My Finance</p>
         <p className="text-sm text-gray-600">
           Easily manage and visualize your daily expenses and incomes with
@@ -59,6 +62,18 @@ const AuthForm = () => {
         </p>
       </div>
 
+      <Button
+        title="Login with google"
+        variant="outline"
+        icon={<FcGoogle size={24} />}
+        className="gap-2"
+      />
+
+      <div className="flex items-center justify-center">
+        <hr className="border-t border-gray-300 w-full" />
+        <span className="px-1 text-gray-600 text-sm">OR</span>
+        <hr className="border-t border-gray-300 w-full" />
+      </div>
       <form onSubmit={form.handleSubmit(onSubmit)}>
         <div className="flex flex-col gap-4">
           <div>
@@ -90,7 +105,7 @@ const AuthForm = () => {
                 Confirm Password
               </label>
               <Input
-                {...form.register("confirm_password")} 
+                {...form.register("confirm_password")}
                 id="confirm_password"
                 type="password"
                 placeholder="Confirm Password"
@@ -98,21 +113,22 @@ const AuthForm = () => {
             </div>
           )}
         </div>
+
+        <Button
+          title={!isLogin ? "SignUp" : "Login"}
+          type="submit"
+          variant="outline"
+          className="w-full mt-10 bg-blue-600 hover:bg-blue-500 text-white"
+        />
         <p className="text-center py-[16px]">
           {!isLogin ? "Already have an account? " : "Go back to "}
           <strong
-            className="text-blue-600 cursor-pointer hover:text-blue-500"
+            className="text-blue-500 cursor-pointer hover:text-blue-600"
             onClick={() => setIsLogin((prevState) => !prevState)}
           >
             {!isLogin ? "Login" : "SignUp"}
           </strong>
         </p>
-        <Button
-          title={!isLogin ? "SignUp" : "Login"}
-          type="submit"
-          variant="outline"
-          className="w-full"
-        />
       </form>
       <p className="font-light text-center text-gray-600 text-sm">
         By signing up, you agree to accept our terms and conditions.

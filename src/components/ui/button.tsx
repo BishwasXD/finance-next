@@ -18,6 +18,7 @@ const buttonVariants = cva(
           "bg-secondary text-secondary-foreground hover:bg-secondary/80 dark:bg-dark_mode",
         ghost: "hover:bg-accent hover:text-accent-foreground dark:bg-dark_mode",
         link: "text-primary underline-offset-4 hover:underline dark:bg-dark_mode",
+
       },
       size: {
         default: "h-10 px-4 py-2",
@@ -51,9 +52,9 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
         ref={ref}
         {...props}
       >
-        
+           {icon}
         {title}
-        {icon}
+     
         {children}
         </Comp>
     )
