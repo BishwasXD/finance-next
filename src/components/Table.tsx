@@ -11,15 +11,13 @@ import {
 
 interface CustomTableProps {
   tableTitle: string;
-  tableFooter?: string;
   tableRow: string[];
   tableData: any[];
 }
 const CustomTable = ({
   tableData,
   tableRow,
-  tableTitle,
-  tableFooter,
+  tableTitle
 }: CustomTableProps) => {
   return (
     <Table>

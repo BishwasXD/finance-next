@@ -4,28 +4,43 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
-import { passwordSchema, emailSchema } from "../../schema/authFormSchema";
+
 import { zodResolver } from "@hookform/resolvers/zod";
 import z from "zod";
 import axios from "axios";
 import { useRouter } from "next/navigation";
 import { backendRequests } from "@/request";
 import { FcGoogle } from "react-icons/fc";
-const AuthForm = () => {
-  const [isLogin, setIsLogin] = useState(true);
-  let formSchema = z.object({
-    email: emailSchema,
-    password: passwordSchema,
+
+const passwordSchema = z
+  .string()
+  .min(8, { message: "Password should be at least 8 characters" });
+
+const loginSchema = z.object({
+  email: z
+    .string()
+    .min(1, { message: "Email is required" })
+    .email({ message: "Must be a valid email" }),
+  password: passwordSchema,
+});
+
+const signUpSchema = loginSchema
+  .extend({
+    confirm_password: passwordSchema,
+  })
+  .refine((data) => data.password === data.confirm_password, {
+    message: "Passwords don't match",
+    path: ["confirm_password"],
   });
-  if (!isLogin) {
-    formSchema = formSchema.extend({
-      confirm_password: passwordSchema,
-    });
-  }
+
+const AuthForm = () => {
+  const [isLogin, setIsLogin] = useState<boolean>(true);
+
+  const formSchema = isLogin ? loginSchema : signUpSchema;
   const defaultFormValues = {
     email: "",
     password: "",
-    confirm_password: "",
+    ...(isLogin ? {} : { confirm_password: "" }),
   };
 
   type IformType = z.infer<typeof formSchema>;
@@ -33,6 +48,10 @@ const AuthForm = () => {
     defaultValues: defaultFormValues,
     resolver: zodResolver(formSchema),
   });
+  const {
+    formState: { errors },
+  } = form;
+
   const router = useRouter();
 
   const onSubmit = async (data: IformType) => {
@@ -84,8 +103,11 @@ const AuthForm = () => {
               {...form.register("email")}
               id="email"
               type="text"
-              placeholder="Enter your Email"
+              placeholder="example@gmail.com"
             />
+            {errors.email && (
+              <p className="text-red-500 text-sm">{errors?.email?.message}</p>
+            )}
           </div>
 
           <div>
@@ -96,8 +118,13 @@ const AuthForm = () => {
               {...form.register("password")}
               id="password"
               type="password"
-              placeholder="Enter Password"
+              placeholder="xxxxxxxxxx"
             />
+            {errors.password && (
+              <p className="text-red-500 text-sm">
+                {errors?.password?.message}
+              </p>
+            )}
           </div>
           {!isLogin && (
             <div>
@@ -108,8 +135,13 @@ const AuthForm = () => {
                 {...form.register("confirm_password")}
                 id="confirm_password"
                 type="password"
-                placeholder="Confirm Password"
+                placeholder="xxxxxxxxxx"
               />
+              {errors.confirm_password && (
+                <p className="text-red-500 text-sm">
+                  {errors?.confirm_password?.message}
+                </p>
+              )}
             </div>
           )}
         </div>

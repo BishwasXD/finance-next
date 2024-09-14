@@ -1,8 +1,8 @@
 import React from 'react'
-
+import TransactionsSummaryTable from '@/containers/TransactionsSummaryTable/TransactionsSummaryTable'
 const ReportPage = () => {
   return (
-    <div>ReportPage.</div>
+    <div><TransactionsSummaryTable showAll={true}/></div>
   )
 }
 

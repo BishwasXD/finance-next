@@ -30,12 +30,13 @@ const transactionFormSchema = z.object({
     })
     .gt(0, { message: "Amount cannot be negative" }),
 });
+type ITransactionType = z.infer<typeof transactionFormSchema>;
 
 const AddTransactionForm = () => {
   const [date, setSelectedDate] = useState<Date | undefined>(new Date());
   const [selectedField, setSelectedField] = useState<FieldType>("Income");
 
-  const form = useForm<any>({
+  const form = useForm<ITransactionType>({
     defaultValues: {
       date: date,
       category: "",
@@ -99,7 +100,7 @@ const AddTransactionForm = () => {
               ))}
             </SelectContent>
             {errors.category && (
-              <p className="text-red-500 text-sm">{errors.category?.message}</p> //TODO: works but need to look the error showing
+              <p className="text-red-500 text-sm">{errors.category?.message}</p>
             )}
           </Select>
           <Input

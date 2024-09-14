@@ -1,35 +1,54 @@
-import React from "react";
+"use client";
+import React, {useState} from "react";
 import { Divide, Wallet } from "lucide-react";
 import { HomeIcon } from "lucide-react";
 import { LayoutDashboardIcon, ClipboardMinus } from "lucide-react";
-
+import { useRouter } from "next/navigation";
+import { SiVivawallet } from "react-icons/si";
 const SideBarContainer = () => {
+  const router = useRouter();
+  console.log('router', router)
+
+  //TODO: make default page from url not constant value
+  const [currentPage, setCurrentPage] = useState<string>('home')
   const sideBarItems = [
     {
       id: 1,
       name: "Home",
       icon: <HomeIcon />,
+      path:'home'
     },
     {
       id: 2,
       name: "Dashboard",
       icon: <LayoutDashboardIcon />,
+      path:'dashboard'
     },
     {
       id: 3,
       name: "Report",
-      icon: <ClipboardMinus/>,
+      icon: <ClipboardMinus />,
+      path:'report'
     },
   ];
+
+  const handlePageTrigger = (path: string) => {
+    setCurrentPage(path)
+    router.push(path);
+  };
   return (
-    <div className="w-[100px] bg-white h-100% flex flex-col items-center  py-5 px-4">
-      {/* <div className="border border-gray-400 rounded-full items-center py-[20px] px-[20px] cursor-pointer hover:bg-gray-100">
-        <Wallet className="h-20 w-20 text-green-500" />
-      </div> */}
+    <div className="w-[100px]  h-[100%] flex flex-col items-center  py-2 px-4 gap-10">
+      <div className="border border-gray-400 rounded-full items-center py-[20px] px-[20px] cursor-pointer hover:bg-gray-100">
+       <SiVivawallet size={24}/>
+      </div>
 
       <div className="flex flex-col gap-10 cursor-pointer">
         {sideBarItems.map((item) => (
-          <div className="flex flex-col cursor-pointer items-center gap-2">
+          <div
+            className={`flex flex-col cursor-pointer items-center gap-2 ${item.path === currentPage ? 'text-blue-700':''}`}
+            key={item.id}
+            onClick={() => handlePageTrigger(item.path)}
+          >
             {item.icon}
             <h3 className="">{item.name}</h3>
           </div>
