@@ -5,5 +5,6 @@ export const backendRequests = {
   getLineChartDataUrl: "http://127.0.0.1:8000/core/get-line-chart",
   getPieChartDataUrl: "http://127.0.0.1:8000/core/get-pie-chart",
   getDonutChartDataUrl: "http://127.0.0.1:8000/core/get-donut-chart",
-  getTableSummaryData:"http://127.0.0.1:8000/core/get-summarytable-data"
+  getTableSummaryData:"http://127.0.0.1:8000/core/get-summarytable-data",
+  addTransactions:"http://127.0.0.1:8000/core/add-transaction"
 };

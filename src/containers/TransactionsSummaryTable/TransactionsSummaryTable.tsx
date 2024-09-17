@@ -3,7 +3,6 @@ import React from "react";
 import {
   Table,
   TableBody,
-  TableCaption,
   TableCell,
   TableHead,
   TableHeader,
@@ -13,13 +12,10 @@ import { NotebookPen, Trash } from "lucide-react";
 import { useTransactionTable } from "@/hooks/useTransactionTable";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 const TransactionsSummaryTable = ({showAll=false}) => {
-
+const router = useRouter()
 const {data, isError, isLoading} = useTransactionTable()
-
-const handleShowMore = ()=>{
-
-}
 
 if (isError){
   return  <div>Something went wrong, try refreshing</div>
@@ -27,7 +23,7 @@ if (isError){
 
 const tableColumn = ['Index','Type','Category','Amount','Date','Actions']
   return (
-    <div className="w-full flex flex-col items-center justify-center py-10 gap-4 h-[500px]">
+  <div className="w-full flex flex-col items-center justify-center py-10 gap-4 h-[600px]">
      <p className="text-blue-500 items-center justify-center font-semibold inline-block">
         Your Transaction History
         <span className="block h-[2px] w-full bg-blue-300 mt-1"></span>
@@ -60,13 +56,14 @@ const tableColumn = ['Index','Type','Category','Amount','Date','Actions']
                 </div>
               </TableCell>
             </TableRow>
+            
 
           )): <div>Loading...</div>}
         </TableBody>
       </Table>
       {!showAll &&
       <Link href={"/report"}>
-      <Button title="Show More" onClick={handleShowMore}/>
+      <Button title="Show More" onClick={() => router.push('/report')}/>
       </Link>
 }
     </div>

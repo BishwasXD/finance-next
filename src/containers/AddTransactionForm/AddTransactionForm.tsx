@@ -2,6 +2,8 @@
 import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
+import axios from "axios";
+import toast, { Toaster } from "react-hot-toast";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -15,6 +17,7 @@ import {
   SelectItem,
 } from "@/components/ui/select";
 import { CategoriesOptions } from "@/select-items";
+import { backendRequests } from "@/request";
 
 export type FieldType = "Expense" | "Income" | "Investment" | "Saving";
 
@@ -35,14 +38,15 @@ type ITransactionType = z.infer<typeof transactionFormSchema>;
 const AddTransactionForm = () => {
   const [date, setSelectedDate] = useState<Date | undefined>(new Date());
   const [selectedField, setSelectedField] = useState<FieldType>("Income");
+  const defaultValues = {
+    date: date,
+    category: "",
+    description: "",
+    amount: undefined,
+  };
 
   const form = useForm<ITransactionType>({
-    defaultValues: {
-      date: date,
-      category: "",
-      description: "",
-      amount: undefined,
-    },
+    defaultValues: defaultValues,
     resolver: zodResolver(transactionFormSchema),
   });
 
@@ -52,12 +56,23 @@ const AddTransactionForm = () => {
     setValue,
     formState: { errors },
   } = form;
-  const onSubmit = (data: any) => {
-    console.log("form submitted", data);
+  const onSubmit = async (data: any) => {
+    try {
+      await axios.post(`${backendRequests.addTransactions}/${selectedField}/`, {
+        ...data,
+        user: 1,
+      });
+      form.reset();
+      toast.success("Transaction added successfully");
+    } catch (error) {
+      toast.error("Something went wrong!");
+      console.log("ERROR OCCURED", error);
+    }
   };
 
   return (
     <div className="w-[660px] border shadow-md px-10 py-10 rounded-md">
+      <Toaster />
       <p className="text-blue-500 mb-12 items-center justify-center font-semibold inline-block">
         Add your Transaction
         <span className="block h-[2px] w-full bg-blue-300 mt-1"></span>

@@ -1,16 +1,14 @@
 "use client";
 import React, {useState} from "react";
-import { Divide, Wallet } from "lucide-react";
 import { HomeIcon } from "lucide-react";
 import { LayoutDashboardIcon, ClipboardMinus } from "lucide-react";
-import { useRouter } from "next/navigation";
+import { useRouter, usePathname } from "next/navigation";
 import { SiVivawallet } from "react-icons/si";
+
 const SideBarContainer = () => {
   const router = useRouter();
-  console.log('router', router)
-
-  //TODO: make default page from url not constant value
-  const [currentPage, setCurrentPage] = useState<string>('home')
+  const currentPath = usePathname()
+  const [currentPage, setCurrentPage] = useState<string>(currentPath)
   const sideBarItems = [
     {
       id: 1,

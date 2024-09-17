@@ -64,7 +64,7 @@ const LineChart = () => {
     <Plot
       data={data}
       layout={layout}
-      config={{ displayModeBar:false,responsive: true, scrollZoom: false, staticPlot: false}}
+      config={{ displayModeBar:false}}
       style={{ width: "100%", minWidth: "300px", height: 500 }}
       useResizeHandler={true}
       className="bg-red-300"

@@ -4,7 +4,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
-
+import toast, { Toaster } from "react-hot-toast";
 import { zodResolver } from "@hookform/resolvers/zod";
 import z from "zod";
 import axios from "axios";
@@ -61,18 +61,29 @@ const AuthForm = () => {
         isLogin ? backendRequests.loginUrl : backendRequests.signUpUrl,
         data
       );
-      console.log(res.data.token.access);
-      localStorage.setItem("accessToken", res.data.token.access);
-      localStorage.setItem("refreshToken", res.data.token.refresh);
-      localStorage.setItem("email", form.getValues("email"));
-      router.push("/home");
-    } catch (error) {
-      console.log(error);
+      toast.success("Logged in successfully");
+      // localStorage.setItem("accessToken", res.data.token.access);
+      // localStorage.setItem("refreshToken", res.data.token.refresh);
+      // localStorage.setItem("email", form.getValues("email"));
+      // router.push("/home");
+    } catch (error: any) {
+      console.log(typeof error.response.status);
+      if (error.response.status === 400) {
+        if (isLogin) {
+          toast.error("Invalid Login Information");
+        } else {
+          toast.error("User already exists, procced to login");
+          setIsLogin(true);
+        }
+      } else {
+        toast.error("Server Error!");
+      }
     }
   };
 
   return (
     <div className="flex flex-col gap-5  bg-white w-[500px] py-20 dark:bg-dark_mode dark:border border-black">
+      <Toaster />
       <div className="flex flex-col text-center gap-4">
         <p className="font-bold">Welcome to Track My Finance</p>
         <p className="text-sm text-gray-600">
