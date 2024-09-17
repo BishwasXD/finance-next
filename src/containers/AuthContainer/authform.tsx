@@ -11,7 +11,7 @@ import axios from "axios";
 import { useRouter } from "next/navigation";
 import { backendRequests } from "@/request";
 import { FcGoogle } from "react-icons/fc";
-
+import handleLogin from "@/services/LogInService";
 const passwordSchema = z
   .string()
   .min(8, { message: "Password should be at least 8 characters" });
@@ -55,28 +55,17 @@ const AuthForm = () => {
   const router = useRouter();
 
   const onSubmit = async (data: IformType) => {
-    console.log(data);
-    try {
-      const res = await axios.post(
-        isLogin ? backendRequests.loginUrl : backendRequests.signUpUrl,
-        data
-      );
-      toast.success("Logged in successfully");
-      // localStorage.setItem("accessToken", res.data.token.access);
-      // localStorage.setItem("refreshToken", res.data.token.refresh);
-      // localStorage.setItem("email", form.getValues("email"));
-      // router.push("/home");
-    } catch (error: any) {
-      console.log(typeof error.response.status);
-      if (error.response.status === 400) {
-        if (isLogin) {
-          toast.error("Invalid Login Information");
-        } else {
-          toast.error("User already exists, procced to login");
-          setIsLogin(true);
-        }
-      } else {
-        toast.error("Server Error!");
+    const { email, password } = data;
+    if (isLogin) {
+      handleLogin(email, password, "/home", router);
+    } else {
+      try {
+        const res = await axios.post(backendRequests.signUpUrl, data);
+        handleLogin(email, password, "/home", router);
+      } catch (error:any) {
+        console.log("ERROR", error.response.data.message);
+        toast.error(error.response.data.message)
+
       }
     }
   };
