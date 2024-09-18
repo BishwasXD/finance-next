@@ -2,7 +2,7 @@ import axios from "axios";
 import { NextAuthOptions } from "next-auth";
 import Credentials from "next-auth/providers/credentials";
 import { backendRequests } from "@/request";
-
+import { TokenData } from "@/types";
 
 export const options: NextAuthOptions = {
   providers: [
@@ -23,7 +23,8 @@ export const options: NextAuthOptions = {
         // },
       },
       async authorize(credentials) {
-        const { email, password } = credentials as {email:string, password:string} || {};
+        const { email, password } =
+          (credentials as { email: string; password: string }) || {};
         try {
           const res = await axios.post(backendRequests.loginUrl, {
             email: email,
@@ -36,8 +37,7 @@ export const options: NextAuthOptions = {
             token: token,
           });
           if (user.data) {
-            console.log(user.data)
-            return user.data; //stored in cookie
+            return user.data;
           }
         } catch (error: any) {
           console.log(error?.response?.data?.message);
@@ -51,18 +51,16 @@ export const options: NextAuthOptions = {
   ],
   callbacks: {
     async jwt({ token, user }) {
-      if (user) {
-        token.user = user;
-      }
-      return {...token, ...user};
+      return { ...token, ...user };
     },
 
     async session({ session, token }) {
       session.user = token as any;
-      return session as any;
+      console.log("SESSION", session);
+      return session;
     },
-    
-  },  session: {
+  },
+  session: {
     strategy: "jwt",
   },
 };

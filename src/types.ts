@@ -11,3 +11,13 @@ export type TSummaryTable = {
 export type TDonutChartData = {
     
 }
+export interface TokenData {
+    email: string;
+    token_type: string;
+    exp: number;   
+    iat: number;   
+    jti: string;   
+    user_id: number;
+    token: string; 
+  }
+  

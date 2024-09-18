@@ -81,7 +81,7 @@ const AddTransactionForm = () => {
       <form onSubmit={handleSubmit(onSubmit)}>
         <div className="flex flex-col gap-[20px]">
           <Datepicker
-            className="!bg-white"
+     
             date={date}
             handleDateSelection={(selectedDate) => {
               setSelectedDate(selectedDate);

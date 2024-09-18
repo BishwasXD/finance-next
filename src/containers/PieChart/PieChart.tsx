@@ -9,7 +9,8 @@ import { useSession } from 'next-auth/react'
 
 const PieChart = () => {
     const session = useSession()
-    const token = session.data?.user?.token || ""
+    const token = session.data?.user?.token
+    console.log(token)
     const [incomeData, setIncomeData] = useState([])
     const [expenseData, setExpenseData] = useState([])
     useEffect(()=>{
