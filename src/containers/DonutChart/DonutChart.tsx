@@ -3,6 +3,7 @@ import React from "react";
 import ReactApexChart from "react-apexcharts";
 import { ApexOptions } from "apexcharts";
 import { useDonutChart } from "@/hooks/useDonutChart";
+
 const DonutChart = () => {
   const { data, isError, isLoading } = useDonutChart();
 

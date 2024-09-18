@@ -5,8 +5,11 @@ import axios from 'axios'
 import { backendRequests } from '@/request'
 import ReactApexChart from "react-apexcharts";
 import { ApexOptions } from "apexcharts";
+import { useSession } from 'next-auth/react'
 
 const PieChart = () => {
+    const session = useSession()
+    const token = session.data?.user?.token || ""
     const [incomeData, setIncomeData] = useState([])
     const [expenseData, setExpenseData] = useState([])
     useEffect(()=>{
@@ -14,7 +17,11 @@ const PieChart = () => {
     },[])
     const fetchData = async() => {
         try{
-        const res = await axios.get(backendRequests.getPieChartDataUrl)
+        const res = await axios.get(backendRequests.getPieChartDataUrl,{
+          headers:{
+            Authorization:`Bearer ${token}`
+          }
+        })
         setIncomeData(res.data.data.income_data)
         setExpenseData(res.data.data.expense_data)
         }

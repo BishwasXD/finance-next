@@ -36,6 +36,7 @@ export const options: NextAuthOptions = {
             token: token,
           });
           if (user.data) {
+            console.log(user.data)
             return user.data; //stored in cookie
           }
         } catch (error: any) {
@@ -48,17 +49,20 @@ export const options: NextAuthOptions = {
       },
     }),
   ],
-  // callbacks: {
-  //   async jwt({ token, user }) {
-  //     if (user) {
-  //       token.user = user;
-  //     }
-  //     return token;
-  //   },
+  callbacks: {
+    async jwt({ token, user }) {
+      if (user) {
+        token.user = user;
+      }
+      return {...token, ...user};
+    },
 
-  //   async session({ session, token }) {
-  //     session.user = token as any;
-  //     return session;
-  //   },
-  // },
+    async session({ session, token }) {
+      session.user = token as any;
+      return session as any;
+    },
+    
+  },  session: {
+    strategy: "jwt",
+  },
 };
