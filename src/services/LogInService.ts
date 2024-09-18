@@ -8,6 +8,8 @@ export async function handleLogin(
   redirectUrl: string,
   router: any
 ) {
+
+  //next js will call authorize function inside od cred provider
   const login = await signIn("credentials", {
     email,
     password,

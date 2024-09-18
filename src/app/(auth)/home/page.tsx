@@ -5,7 +5,7 @@ import TransactionsSummaryTable from "@/containers/TransactionsSummaryTable/Tran
 
 const HomeRoute = () => {
   return (
-    <div className="flex flex-col w-full gap-12">
+    <div className="flex flex-col w-full">
       <div className="flex gap-12">
         <AddTransactionForm />
         <DonutChart />

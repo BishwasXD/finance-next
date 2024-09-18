@@ -4,11 +4,13 @@ import { Upload, Download, Moon, Sun, LogOut, User } from "lucide-react";
 import axios from "axios";
 import { backendRequests } from "@/request";
 import { useTheme } from "next-themes";
-
+import { useSession } from "next-auth/react";
+import { signOut } from "next-auth/react";
 const NavBar = () => {
   const { theme, setTheme } = useTheme();
   const [mounted, setMounted] = useState(false);
-
+  const session = useSession()
+  const email = session ? session?.data?.user?.email : 'example@gmail.com'
   useEffect(() => {
     setMounted(true);
   }, []);
@@ -52,14 +54,14 @@ const NavBar = () => {
         <User />
       </div>
       <div className="flex flex-col ml-2">
-        <h3 className="text-sm font-bold">Example Name</h3>
-        <p className="text-sm text-gray-500">example@gmail.com</p>
+        <h3 className="text-sm font-bold">{email?.split('@')[0]}</h3>
+        <p className="text-sm text-gray-500">{email}</p>
       </div>
     </div>  
     <div className="flex items-center gap-[10px] cursor-pointer" onClick={handleThemeSwitch}>
       {theme === "light" ? <Moon /> : <Sun />}
     </div>
-    <LogOut className="hover:text-red-600 cursor-pointer" />
+    <LogOut className="hover:text-red-600 cursor-pointer"/>
   </div>
 </div>
 

@@ -4,11 +4,10 @@ import { HomeIcon } from "lucide-react";
 import { LayoutDashboardIcon, ClipboardMinus } from "lucide-react";
 import { useRouter, usePathname } from "next/navigation";
 import { SiVivawallet } from "react-icons/si";
-import { useSession } from "next-auth/react";
+
 
 const SideBarContainer = () => {
-  const session = useSession()
-  console.log('SESSION',session.data?.user)
+
   const router = useRouter();
   const currentPath = usePathname();
   const [currentPage, setCurrentPage] = useState<string>(currentPath);
