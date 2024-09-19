@@ -1,8 +1,7 @@
 import axios from "axios";
 import { NextAuthOptions } from "next-auth";
 import Credentials from "next-auth/providers/credentials";
-import { backendRequests } from "@/request";
-import { TokenData } from "@/types";
+import { backendRequests } from "@/request";;
 
 export const options: NextAuthOptions = {
   providers: [

@@ -11,7 +11,7 @@ export type TSummaryTable = {
 export type TDonutChartData = {
     
 }
-export interface TokenData {
+export type TokenData = {
     email: string;
     token_type: string;
     exp: number;   
@@ -20,4 +20,7 @@ export interface TokenData {
     user_id: number;
     token: string; 
   }
+  type PieChartDataKey = 'incomeLabels' | 'incomeValues' | 'expenseLabels' | 'expenseValues';
+
+  export type PieChartDataT = Record<PieChartDataKey, any[]>;
   
