@@ -18,6 +18,7 @@ import {
 } from "@/components/ui/select";
 import { CategoriesOptions } from "@/select-items";
 import { backendRequests } from "@/request";
+import { useSession } from "next-auth/react";
 
 export type FieldType = "Expense" | "Income" | "Investment" | "Saving";
 
@@ -36,6 +37,8 @@ const transactionFormSchema = z.object({
 type ITransactionType = z.infer<typeof transactionFormSchema>;
 
 const AddTransactionForm = () => {
+  const session = useSession();
+  const token = session.data?.user?.user_id;
   const [date, setSelectedDate] = useState<Date | undefined>(new Date());
   const [selectedField, setSelectedField] = useState<FieldType>("Income");
   const defaultValues = {
@@ -56,11 +59,11 @@ const AddTransactionForm = () => {
     setValue,
     formState: { errors },
   } = form;
-  const onSubmit = async (data: any) => {
+  const onSubmit = async (data: ITransactionType) => {
     try {
       await axios.post(`${backendRequests.addTransactions}/${selectedField}/`, {
         ...data,
-        user: 1,
+        user: token, //TODO: ADD TOKEN INSTEAD OF THIS
       });
       form.reset();
       toast.success("Transaction added successfully");
@@ -81,7 +84,6 @@ const AddTransactionForm = () => {
       <form onSubmit={handleSubmit(onSubmit)}>
         <div className="flex flex-col gap-[20px]">
           <Datepicker
-     
             date={date}
             handleDateSelection={(selectedDate) => {
               setSelectedDate(selectedDate);
