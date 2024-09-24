@@ -21,6 +21,9 @@ const SummaryCards = () => {
   const [summaryData, setSummaryData] = useState<SummaryDataT>();
   const session = useSession();
   const token = session.data?.user?.token;
+  useEffect(() => {
+    fetchData();
+  }, [token]);
   const fetchData = async () => {
     try {
       const res = await axios.get(backendRequests.getSummaryCardDataUrl, {
@@ -33,9 +36,7 @@ const SummaryCards = () => {
     } catch (error) {
       console.log("ERROR", error);
     }
-  };  useEffect(() => {
-    fetchData();
-  }, [token]);
+  }; 
 
   const summaryCardData = [
     {

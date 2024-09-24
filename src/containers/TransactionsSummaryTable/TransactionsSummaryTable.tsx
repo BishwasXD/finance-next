@@ -31,12 +31,12 @@ const tableColumn = ['Index','Type','Category','Amount','Date','Actions']
       <Table>
         <TableHeader> 
           <TableRow>
-           {tableColumn.map((item)=><TableHead>{item}</TableHead>)}
+           {tableColumn.map((item)=><TableHead key={item}>{item}</TableHead>)}
           </TableRow>
         </TableHeader>
         <TableBody>
           {!isLoading ? (!showAll ? data?.slice(0,5):data).map((item, index) => (
-            <TableRow>
+            <TableRow key={index}>
               <TableCell>{index}</TableCell>
               <TableCell>{item.field}</TableCell>
               <TableCell>{item.category}</TableCell>

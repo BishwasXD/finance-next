@@ -24,14 +24,14 @@ const CustomTable = ({
       <TableCaption>{tableTitle}</TableCaption>
       <TableHeader>
         {tableRow.map((item, index) => (
-          <TableRow id={item}>
+          <TableRow key={item}>
             <TableHead>{item}</TableHead>
           </TableRow>
         ))}
       </TableHeader>
       <TableBody>
         {tableData.map((item, index) => (
-          <TableRow>
+          <TableRow key={item}>
             <TableCell>{item}</TableCell>
           </TableRow>
         ))}
