@@ -10,4 +10,5 @@ export const backendRequests = {
   verifyTokenUrl:"http://127.0.0.1:8000/accounts/verify-token",
   getSummaryCardDataUrl:"http://127.0.0.1:8000/core/get-summary-data",
   getBarChartUrl:"http://127.0.0.1:8000/core/get-bar-chart",
+  editTransactionUrl:"http://127.0.0.1:8000/core/edit-transaction-data",
 };

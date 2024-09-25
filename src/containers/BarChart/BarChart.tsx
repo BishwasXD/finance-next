@@ -8,11 +8,6 @@ import { ApexOptions } from "apexcharts";
 const BarChart = () => {
   const { data, isError, isLoading } = useBarChart();
 
-  if (!isLoading && data) {
-    console.log("DATA IS", data);
-    console.log("Income data", Object.values(data?.income));
-  }
-
   if (isError) {
     return <p>Something went wrong, try refreshing</p>;
   }

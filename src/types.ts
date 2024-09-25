@@ -5,6 +5,7 @@ export type TSummaryTable = {
     category:string,
     amount:number,
     date: Date
+    id:number,
 
 }
 
