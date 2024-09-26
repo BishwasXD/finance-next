@@ -26,6 +26,8 @@ import { backendRequests } from "@/request";
 import { useSession } from "next-auth/react";
 import { FieldType } from "./AddTransactionForm";
 
+
+//TODO:: FIX DATE ISSUE
 export function EditTransactionPopOver({
   id,
   amount,
@@ -53,7 +55,7 @@ export function EditTransactionPopOver({
   const [date, setSelectedDate] = useState<Date | undefined>(tDate);
   const [tType, setTType] = useState<string>(type);
   const [cat, setCategory] = useState<string>(category);
-  const [isPopoverOpen, setIsPopoverOpen] = useState<boolean>(true)
+  const [isPopoverOpen, setIsPopoverOpen] = useState<boolean>(false)
   const defaultValues = {
     date: date,
     category: category,
@@ -81,13 +83,7 @@ export function EditTransactionPopOver({
         ...data,
         user: token, //TODO: ADD TOKEN INSTEAD OF THIS
       });
-      form.reset({
-        description: "",
-        amount: 0,
-        date: new Date(),
-      });
-      setCategory("");
-      form.clearErrors();
+      setIsPopoverOpen(false)
       toast.success("Transaction edited successfully");
     } catch (error) {
       toast.error("Something went wrong!");
@@ -97,7 +93,7 @@ export function EditTransactionPopOver({
 
 
   return (
-    <Popover>
+    <Popover open={isPopoverOpen} onOpenChange={setIsPopoverOpen}>
       <PopoverTrigger asChild>
         <NotebookPen
           aria-label="Edit Transaction"

@@ -8,7 +8,8 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
-import { NotebookPen, Trash } from "lucide-react";
+import toast from "react-hot-toast";
+import { Trash } from "lucide-react";
 import { useTransactionTable } from "@/hooks/useTransactionTable";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
@@ -16,6 +17,8 @@ import { useRouter } from "next/navigation";
 import { EditTransactionPopOver } from "../AddTransactionForm/EditTransactionPopOver";
 import axios from "axios";
 import { backendRequests } from "@/request";
+import { ConfirmationPopover } from "@/components/ConfirmationPopover";
+
 const TransactionsSummaryTable = ({ showAll = false }) => {
   const router = useRouter();
   const { data, isError, isLoading } = useTransactionTable();
@@ -24,7 +27,7 @@ const TransactionsSummaryTable = ({ showAll = false }) => {
   if (isError) {
     return <div>Something went wrong, try refreshing</div>;
   }
-  
+
   const tableColumn = [
     "Index",
     "Type",
@@ -33,17 +36,20 @@ const TransactionsSummaryTable = ({ showAll = false }) => {
     "Date",
     "Actions",
   ];
-  const handleDeleteTransaction = async (id:number, field:string) => {
-   try{
-     const res = await axios.delete(`${backendRequests.editTransactionUrl}/${id}/${field}/`)
-    console.log(res.data.message)
 
-   }
-   catch(error){
-    console.log('ERROR', error)
-   }
+  const handleConfirmDeleteClick = async (id:number, type:string) => {
+    console.log('DELETE CLICKED')
+    try {
+      const res = await axios.delete(
+        `${backendRequests.editTransactionUrl}/${id}/${type}/`
+      );
+      console.log(res.data.message);
+      toast.success(res.data.message)
+    } catch (error) {
+      console.log("ERROR", error);
+    }
+  };
 
-  }
   return (
     <div className="w-full flex flex-col items-center justify-center py-10 gap-4 h-[600px]">
       <p className="text-blue-500 items-center justify-center font-semibold inline-block">
@@ -79,10 +85,11 @@ const TransactionsSummaryTable = ({ showAll = false }) => {
                       amount={item.amount}
                       tDate={item.date}
                     />
-                    <Trash
-                      aria-label="Delete Transaction"
-                      className="text-red-600 hover:text-red-400"
-                      onClick={() => handleDeleteTransaction(item.id, item.field)}
+
+                    <ConfirmationPopover
+                      title="Are you sure you want to delete this transaction"
+                      trigger={ <Trash className="text-red-600 hover:text-red-400 cursor-pointer" />}
+                      onConfirmClick={() => handleConfirmDeleteClick(item.id, item.field)}
                     />
                   </div>
                 </TableCell>
