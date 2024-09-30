@@ -101,7 +101,7 @@ const TransactionsSummaryTable = ({ showAll = false }) => {
         </TableBody>
       </Table>
       {!showAll && (
-        <Link href={"/report"}>
+        <Link href={"home/table"}>
           <Button title="Show More" onClick={() => router.push("/report")} />
         </Link>
       )}

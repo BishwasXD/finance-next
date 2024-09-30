@@ -13,9 +13,9 @@ export function usePieChart() {
     try {
       const chartData = await fetchPieData();
       const incomeLabels = Object.keys(chartData.data.income);
-      const incomeValues = Object.values(chartData.data.income) as number[];
+      const incomeValues = Object.values(chartData.data.income)
       const expenseLabels = Object.keys(chartData.data.expense);
-      const expenseValues = Object.values(chartData.data.expense) as number[];
+      const expenseValues = Object.values(chartData.data.expense)
       const combinedChartData = {
         'incomeLabels': incomeLabels,
         'incomeValues': incomeValues,

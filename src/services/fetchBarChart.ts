@@ -6,7 +6,7 @@ export async function fetchBarChart(){
     const session = await getSession()
     const token = session?.user?.token
 try{
-    const res = await axios.get(`${backendRequests.getBarChartUrl}/${'weekly'}/`,{
+    const res = await axios.get(backendRequests.getBarChartUrl, {
         headers:{
             Authorization:`Bearer ${token}`
         }

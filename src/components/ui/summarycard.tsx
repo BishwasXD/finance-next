@@ -37,7 +37,7 @@ const SummaryCards = () => {
       console.log("ERROR", error);
     }
   }; 
-
+  
   const summaryCardData = [
     {
       id: 1,

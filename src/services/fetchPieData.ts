@@ -12,6 +12,7 @@ export const fetchPieData = async () => {
         Authorization: `Bearer ${token}`,
       },
     });
+
     return response;
   } catch (error) {
     throw error;

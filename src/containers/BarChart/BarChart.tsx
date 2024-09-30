@@ -4,7 +4,7 @@ import ReactApexChart from "react-apexcharts";
 import { useBarChart } from "@/hooks/useBarChart";
 import { ApexOptions } from "apexcharts";
 
-//TODO: ADD FILTER OPTION, MATCH COLOR FOR LABEL, FIX LABEL FROM BACKEND.
+
 const BarChart = () => {
   const { data, isError, isLoading } = useBarChart();
 
@@ -19,19 +19,19 @@ const BarChart = () => {
   const series = [
     {
       name: "Income",
-      data: Object.values(data?.income || []).map((key) => Number(key)),
+      data: Object.values(data?.data[0] || []).map((key) => key === 0 ? null : Number(key)),
     },
     {
       name: "Expense",
-      data: Object.values(data?.expenses || []).map((value) => Number(value)),
+      data: Object.values(data?.data[1]  || []).map((key) => key === 0 ? null : Number(key)),
     },
     {
       name: "Investment",
-      data: Object.values(data?.investments || []).map((value) => Number(value)),
+      data: Object.values(data?.data[2]  || []).map((key) => key === 0 ? null : Number(key)),
     },
     {
       name: "Saving",
-      data: Object.values(data?.savings || []).map((value) => Number(value)),
+      data: Object.values(data?.data[3]  || []).map((key) => key === 0 ? null : Number(key)),
     },
   ];
 
@@ -52,17 +52,7 @@ const BarChart = () => {
       colors: ["transparent"],
     },
     xaxis: {
-      categories: [
-        "Feb",
-        "Mar",
-        "Apr",
-        "May",
-        "Jun",
-        "Jul",
-        "Aug",
-        "Sep",
-        "Oct",
-      ],
+      categories: data?.labels
     },
     yaxis: {
       title: {
@@ -78,7 +68,7 @@ const BarChart = () => {
     <div>
       <ReactApexChart
         options={options}
-        series={series}
+        series={series as any}
         type="bar"
         height={400}
 
