@@ -53,6 +53,7 @@ const BarChart = () => {
     },
     xaxis: {
       categories: data?.labels
+    
     },
     yaxis: {
       title: {

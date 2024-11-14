@@ -25,3 +25,17 @@ export type TokenData = {
 
   export type PieChartDataT = Record<PieChartDataKey, any[]>;
   
+  export type ReportDataT = {
+    total_transactions: number,
+    total_income: number,
+    total_expense:number,
+    net_balance:number
+    top_income_cat: {
+      category:string
+      amount:number
+    }
+    top_expense_cat:{
+      category:string
+      amount:number
+    }
+  }

@@ -1,4 +1,7 @@
+'use client'
 import React from "react";
+import { PDFViewer } from '@react-pdf/renderer';
+import ReportContainer from "@/containers/ReportContainer/ReportContainer";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 
 const ReportPage = () => {
@@ -11,7 +14,7 @@ const ReportPage = () => {
           <TabsTrigger value="pass">Yearly Report</TabsTrigger>
         </TabsList>
         <TabsContent value="account">
-         Weekly Report
+     <ReportContainer/>
         </TabsContent>
         <TabsContent value="password">Monthly Report.</TabsContent>
         <TabsContent value="pass">Yearly Report.</TabsContent>
