@@ -1,9 +1,9 @@
 "use client";
 import React from "react";
-import ReactApexChart from "react-apexcharts";
+import dynamic from "next/dynamic";
 import { useBarChart } from "@/hooks/useBarChart";
 import { ApexOptions } from "apexcharts";
-
+const ReactApexChart = dynamic(() => import("react-apexcharts"), { ssr: false });
 
 const BarChart = () => {
   const { data, isError, isLoading } = useBarChart();

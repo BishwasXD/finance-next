@@ -11,9 +11,9 @@ const NavBar = () => {
   const [mounted, setMounted] = useState(false);
   const session = useSession();
   const email = session ? session?.data?.user?.email : "example@gmail.com";
-  useEffect(() => {
-    setMounted(true);
-  }, []);
+  // useEffect(() => {
+  //   setMounted(true);
+  // }, []);
 
   const sendExportCsvRequest = async () => {
     try {
@@ -38,7 +38,7 @@ const NavBar = () => {
     setTheme(theme === "dark" ? "light" : "dark");
   };
 
-  if (!mounted) return null;
+  // if (!mounted) return null;
 
   return (
     <div className="flex  bg-white px-[20px] dark:bg-dark_mode fixed right-0 top-0 z-[50] left-[100px] justify-end  overflow-hidden border-b">

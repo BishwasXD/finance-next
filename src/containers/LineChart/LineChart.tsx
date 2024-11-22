@@ -1,7 +1,8 @@
 "use client";
+import dynamic from "next/dynamic";
 import React from "react";
-import Plot from "react-plotly.js";
 import { useLineChart } from "@/hooks/useLineChart";
+const Plot = dynamic(() => import("react-plotly.js"), { ssr: false });
 
 const LineChart = () => {
  const {data:{incomeDates, incomeValues, expenseDates, expenseValues}, isError, isLoading} = useLineChart()

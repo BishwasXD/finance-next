@@ -137,11 +137,11 @@ const AuthForm = () => {
                 type="password"
                 placeholder="xxxxxxxxxx"
               />
-              {errors.confirm_password && (
+              {/* {errors.confirm_password && (
                 <p className="text-red-500 text-sm">
                   {errors?.confirm_password?.message}
                 </p>
-              )}
+              )} */}
             </div>
           )}
         </div>

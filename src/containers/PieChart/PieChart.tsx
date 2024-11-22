@@ -1,8 +1,10 @@
 "use client";
 import React from "react";
-import ReactApexChart from "react-apexcharts";
+import dynamic from "next/dynamic";
 import { ApexOptions } from "apexcharts";
 import { usePieChart } from "@/hooks/usePieChart";
+const ReactApexChart = dynamic(() => import("react-apexcharts"), { ssr: false });
+
 const PieChart = () => {
   
   const {
@@ -23,7 +25,7 @@ const PieChart = () => {
   const incomeOptions = {
     labels: data?.incomeLabels,
   } as ApexOptions;
-console.log('THE DAMN DATA IS: ', data.incomeValues)
+console.log('THE DATA IS: ', data.incomeValues)
   return (
     <div className="flex gap-24">
       <div className="bg-white shadow-md rounded-md p-4">
