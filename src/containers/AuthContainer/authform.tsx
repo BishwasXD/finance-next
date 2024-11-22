@@ -94,7 +94,7 @@ const AuthForm = () => {
         <hr className="border-t border-gray-300 w-full" />
       </div>
       <form onSubmit={form.handleSubmit(onSubmit)}>
-        <div className="flex flex-col gap-4">
+        <div className="flex flex-col gap-4 px-4">
           <div>
             <label htmlFor="email" className="text-sm">
               Email
