@@ -71,7 +71,7 @@ const AuthForm = () => {
   };
 
   return (
-    <div className="flex flex-col gap-5  bg-white w-[500px] py-20 dark:bg-dark_mode dark:border border-black">
+    <div className="flex flex-col gap-5  bg-white w-[500px] py-20 dark:bg-dark_mode dark:border border-black px-4">
       <Toaster />
       <div className="flex flex-col text-center gap-4">
         <p className="font-bold">Welcome to Track My Finance</p>
