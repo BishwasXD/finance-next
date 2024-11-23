@@ -1,5 +1,5 @@
 
-const BASE_URL = "https://trackmyfinance-production.up.railway.app/"
+const BASE_URL = "https://trackmyfinance-production.up.railway.app"
 export const backendRequests = {
   loginUrl: `${BASE_URL}/accounts/login`,
   downloadCsvUrl: `${BASE_URL}/core/get-csv-file`,
