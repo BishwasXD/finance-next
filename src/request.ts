@@ -1,10 +1,5 @@
 
-const URL = "https://trackmyfinance-production.up.railway.app/"
-
-const BASE_URL = process.env.NODE_ENV === "production" 
-  ? "https://your-drf-api-project.up.railway.app"
-  : "http://127.0.0.1:8000"; 
-
+const BASE_URL = "https://trackmyfinance-production.up.railway.app/"
 export const backendRequests = {
   loginUrl: `${BASE_URL}/accounts/login`,
   downloadCsvUrl: `${BASE_URL}/core/get-csv-file`,
