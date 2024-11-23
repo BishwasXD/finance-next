@@ -1,15 +1,22 @@
+
+const URL = "https://trackmyfinance-production.up.railway.app/"
+
+const BASE_URL = process.env.NODE_ENV === "production" 
+  ? "https://your-drf-api-project.up.railway.app"
+  : "http://127.0.0.1:8000"; 
+
 export const backendRequests = {
-  loginUrl: "http://127.0.0.1:8000/accounts/login",
-  downloadCsvUrl: "http://127.0.0.1:8000/core/get-csv-file",
-  signUpUrl: "http://127.0.0.1:8000/accounts/register",
-  getLineChartDataUrl: "http://127.0.0.1:8000/core/get-line-chart",
-  getPieChartDataUrl: "http://127.0.0.1:8000/core/get-pie-chart",
-  getDonutChartDataUrl: "http://127.0.0.1:8000/core/get-donut-chart",
-  getTableSummaryData:"http://127.0.0.1:8000/core/get-summarytable-data",
-  addTransactions:"http://127.0.0.1:8000/core/add-transaction",
-  verifyTokenUrl:"http://127.0.0.1:8000/accounts/verify-token",
-  getSummaryCardDataUrl:"http://127.0.0.1:8000/core/get-summary-data",
-  getBarChartUrl:"http://127.0.0.1:8000/core/get-bar-chart",
-  editTransactionUrl:"http://127.0.0.1:8000/core/edit-transaction-data",
-  summaryReportUrl:"http://127.0.0.1:8000/core/get-report"
+  loginUrl: `${BASE_URL}/accounts/login`,
+  downloadCsvUrl: `${BASE_URL}/core/get-csv-file`,
+  signUpUrl: `${BASE_URL}/accounts/register`,
+  getLineChartDataUrl: `${BASE_URL}/core/get-line-chart`,
+  getPieChartDataUrl: `${BASE_URL}/core/get-pie-chart`,
+  getDonutChartDataUrl: `${BASE_URL}/core/get-donut-chart`,
+  getTableSummaryData: `${BASE_URL}/core/get-summarytable-data`,
+  addTransactions: `${BASE_URL}/core/add-transaction`,
+  verifyTokenUrl: `${BASE_URL}/accounts/verify-token`,
+  getSummaryCardDataUrl: `${BASE_URL}/core/get-summary-data`,
+  getBarChartUrl: `${BASE_URL}/core/get-bar-chart`,
+  editTransactionUrl: `${BASE_URL}/core/edit-transaction-data`,
+  summaryReportUrl: `${BASE_URL}/core/get-report`
 };
