@@ -48,6 +48,7 @@ export const options: NextAuthOptions = {
       },
     }),
   ],
+  secret: process.env.NEXT_AUTH_SECRET,
   callbacks: {
     async jwt({ token, user }) {
       return { ...token, ...user };
