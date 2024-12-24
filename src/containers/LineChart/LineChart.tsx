@@ -6,7 +6,6 @@ const Plot = dynamic(() => import("react-plotly.js"), { ssr: false });
 
 const LineChart = () => {
  const {data:{incomeDates, incomeValues, expenseDates, expenseValues}, isError, isLoading} = useLineChart()
- console.log('DATA', incomeValues)
  if(isError){
   return <p>Something went wrong, try refreshing...</p>
  }

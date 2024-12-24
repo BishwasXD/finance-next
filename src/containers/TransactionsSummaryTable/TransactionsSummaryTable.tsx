@@ -12,12 +12,12 @@ import toast from "react-hot-toast";
 import { Trash } from "lucide-react";
 import { useTransactionTable } from "@/hooks/useTransactionTable";
 import { Button } from "@/components/ui/button";
-import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { EditTransactionPopOver } from "../AddTransactionForm/EditTransactionPopOver";
 import axios from "axios";
 import { backendRequests } from "@/request";
 import { ConfirmationPopover } from "@/components/ConfirmationPopover";
+
 
 const TransactionsSummaryTable = ({ showAll = false }) => {
   const router = useRouter();
@@ -49,7 +49,8 @@ const TransactionsSummaryTable = ({ showAll = false }) => {
       console.log("ERROR", error);
     }
   };
-
+  let dataSize = data.length
+  console.log("size of a data is", dataSize)
   return (
     <div className="w-full flex flex-col items-center justify-center py-10 gap-4 h-[600px]">
       <p className="text-blue-500 items-center justify-center font-semibold inline-block">
@@ -100,12 +101,12 @@ const TransactionsSummaryTable = ({ showAll = false }) => {
           )}
         </TableBody>
       </Table>
-      {!showAll && (
-        <Link href={"home/table"}>
-          <Button title="Show More" onClick={() => router.push("/report")} />
-        </Link>
-      )}
-    </div>
+{(!showAll && dataSize > 5) && (
+  <Button
+    title="Show More"
+    onClick={() => router.push("/home/table")}
+  />
+)}    </div>
   );
 };
 

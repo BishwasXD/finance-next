@@ -13,7 +13,7 @@ const PieChart = () => {
     isLoading,
   } = usePieChart();
  
-  if (isError || !data) {
+  if (isError) {
     return <p>Something went wrong, try refreshing...</p>;
   }
   if(isLoading){
@@ -25,7 +25,6 @@ const PieChart = () => {
   const incomeOptions = {
     labels: data?.incomeLabels,
   } as ApexOptions;
-console.log('THE DATA IS: ', data.incomeValues)
   return (
     <div className="flex gap-24">
       <div className="bg-white shadow-md rounded-md p-4">
@@ -38,6 +37,7 @@ console.log('THE DATA IS: ', data.incomeValues)
           series={data?.expenseValues.map((val)=> Number(val))}
           type="pie"
           width={600}
+          height={500}
         />
       </div>
 
@@ -51,10 +51,11 @@ console.log('THE DATA IS: ', data.incomeValues)
           series={data?.incomeValues.map((val)=> Number(val))}
           type="pie"
           width={600}
+          height={500}
         />
       </div>
     </div>
   );
 };
 
-export default PieChart;
+export default PieChart
