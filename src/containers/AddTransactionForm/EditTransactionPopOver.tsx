@@ -118,6 +118,7 @@ export function EditTransactionPopOver({
             />{" "}
             {errors.amount && (
               <p className="text-red-500 text-sm">{errors?.amount?.message}</p>
+              
             )}
             <Select
               onValueChange={(value) => {

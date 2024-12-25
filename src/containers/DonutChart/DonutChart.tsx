@@ -1,6 +1,6 @@
 "use client";
-
 import React from "react";
+import ReactLoader from 'react-loading';
 import dynamic from "next/dynamic";
 import { ApexOptions } from "apexcharts";
 import { useDonutChart } from "@/hooks/useDonutChart";
@@ -18,7 +18,11 @@ const DonutChart = () => {
   const chartOptions = {
     labels: ["Income", "Expense"],
   } as ApexOptions;
-  
+
+ if (isLoading){
+    return (<ReactLoader type="bars" color="#ADD8E6"/>)
+  }
+
   if (data[0] == 0 && data[1] == 0){
     return <DataNotFound/>
   }
@@ -42,7 +46,7 @@ const DonutChart = () => {
           />
         
       </div>
-      : <p>Loading...</p>}
+      : <ReactLoader type="bars" height={'5%'} width={'5%'} color="#ADD8E6"/>}
     </div>
   );
 };

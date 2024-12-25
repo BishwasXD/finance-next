@@ -80,7 +80,7 @@ const AddTransactionForm = () => {
         Add your Transaction
         <span className="block h-[2px] w-full bg-blue-300 mt-1"></span>
       </p>
-
+       
       <form onSubmit={handleSubmit(onSubmit)}>
         <div className="flex flex-col gap-[20px]">
           <Datepicker
@@ -127,6 +127,8 @@ const AddTransactionForm = () => {
           <Button title="Add Transaction" type="submit" />
         </div>
       </form>
+  
+  
     </div>
   );
 };

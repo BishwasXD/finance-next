@@ -1,5 +1,6 @@
 "use client";
 import React from "react";
+import ReactLoading from 'react-loading'
 import dynamic from "next/dynamic";
 import { useBarChart } from "@/hooks/useBarChart";
 import { ApexOptions } from "apexcharts";
@@ -13,7 +14,7 @@ const BarChart = () => {
   }
 
   if (isLoading) {
-    return <p>Loading...</p>;
+    return <ReactLoading />;
   }
 
   const series = [
@@ -67,6 +68,7 @@ const BarChart = () => {
   };
 
   return (
+    !isLoading ? (
     <div>
       <ReactApexChart
         options={options}
@@ -76,6 +78,7 @@ const BarChart = () => {
 
       />
     </div>
+    ) : <ReactLoading type="bars" height={'5%'} width={'5%'} color="ADD8E6"/>
   );
 };
 

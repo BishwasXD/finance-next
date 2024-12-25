@@ -1,5 +1,6 @@
 "use client";
 import dynamic from "next/dynamic";
+import ReactLoading from 'react-loading'
 import React from "react";
 import { useLineChart } from "@/hooks/useLineChart";
 const Plot = dynamic(() => import("react-plotly.js"), { ssr: false });
@@ -52,8 +53,8 @@ const LineChart = () => {
       useResizeHandler={true}
       className="bg-red-300"
     />
-    :<p>Loading...</p>
-    }
+    :<ReactLoading type="bars"  width={'5%'} height={'5%'} color="#ADD8E6"/>
+      }
     </div>
   );
 };

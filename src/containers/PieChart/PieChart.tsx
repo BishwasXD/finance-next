@@ -1,5 +1,6 @@
 "use client";
 import React from "react";
+import ReactLoading from 'react-loading';
 import dynamic from "next/dynamic";
 import { ApexOptions } from "apexcharts";
 import { usePieChart } from "@/hooks/usePieChart";
@@ -16,16 +17,16 @@ const PieChart = () => {
   if (isError) {
     return <p>Something went wrong, try refreshing...</p>;
   }
-  if(isLoading){
-    return <p>Loading...</p>;
-  }
-  const expenseOptions = {
+   const expenseOptions = { 
     labels: data?.expenseLabels,
   } as ApexOptions;
+
   const incomeOptions = {
     labels: data?.incomeLabels,
   } as ApexOptions;
-  return (
+  return( 
+
+    !isLoading ? (
     <div className="flex gap-24">
       <div className="bg-white shadow-md rounded-md p-4">
         <p className="text-blue-500 mb items-center justify-center font-semibold inline-block">
@@ -55,7 +56,10 @@ const PieChart = () => {
         />
       </div>
     </div>
+    ): (
+    <ReactLoading type="bars" width={'5%'} height={'5%'} color="#ADD8E6"/>
+    ) 
   );
-};
+}  
 
 export default PieChart
