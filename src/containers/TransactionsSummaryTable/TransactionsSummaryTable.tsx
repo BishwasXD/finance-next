@@ -106,6 +106,7 @@ const TransactionsSummaryTable = ({ showAll = false }) => {
   <Button
     title="Show More"
     onClick={() => router.push("/home/table")}
+    className="dark:bg-gray-600 dark:hover:bg-gray-700"
   />
 )}    </div>
   );

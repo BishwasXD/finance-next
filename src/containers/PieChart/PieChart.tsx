@@ -19,16 +19,22 @@ const PieChart = () => {
   }
    const expenseOptions = { 
     labels: data?.expenseLabels,
+    chart:{
+      foreColor:'#64748b'
+    }
   } as ApexOptions;
 
   const incomeOptions = {
     labels: data?.incomeLabels,
+    chart:{
+      foreColor:'#64748b'
+    }
   } as ApexOptions;
   return( 
 
     !isLoading ? (
     <div className="flex gap-24">
-      <div className="bg-white shadow-md rounded-md p-4">
+      <div className="shadow-md rounded-md p-4">
         <p className="text-blue-500 mb items-center justify-center font-semibold inline-block">
           Expense Breakdown
           <span className="block h-[2px] w-full bg-blue-300 mt-1"></span>
@@ -42,7 +48,7 @@ const PieChart = () => {
         />
       </div>
 
-      <div className="bg-white shadow-md rounded-md p-4">
+      <div className="shadow-md rounded-md p-4">
         <p className="text-blue-500 mb items-center justify-center font-semibold inline-block">
           Income Breakdown
           <span className="block h-[2px] w-full bg-blue-300 mt-1"></span>
