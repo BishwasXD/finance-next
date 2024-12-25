@@ -13,10 +13,6 @@ const BarChart = () => {
     return <p>Something went wrong, try refreshing</p>;
   }
 
-  if (isLoading) {
-    return <ReactLoading />;
-  }
-
   const series = [
     {
       name: "Income",
@@ -40,7 +36,8 @@ const BarChart = () => {
     chart: {
       type: "bar",
       height: 350,
-      width: "100%"
+      width: "100%",
+      foreColor:'#64748b'
     },
     plotOptions: {
       bar: {
@@ -69,7 +66,7 @@ const BarChart = () => {
 
   return (
     !isLoading ? (
-    <div>
+    <div className="shadow-md">
       <ReactApexChart
         options={options}
         series={series as any}
@@ -78,7 +75,7 @@ const BarChart = () => {
 
       />
     </div>
-    ) : <ReactLoading type="bars" height={'5%'} width={'5%'} color="ADD8E6"/>
+    ) : <ReactLoading type="bars" height={'5%'} width={'5%'} color="#ADD8E6"/>
   );
 };
 

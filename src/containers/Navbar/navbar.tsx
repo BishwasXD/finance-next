@@ -54,7 +54,7 @@ const NavBar = () => {
         </div>
         <div className="flex items-center h-[70px]">
           <div className="border rounded-full border-blue-900 w-[35px] h-[35px] flex justify-center items-center bg-gray-50 hover:bg-gray-100 cursor-pointer">
-            <User />
+            <User className="dark:text-black" />
           </div>
           <div className="flex flex-col ml-2">
             <h3 className="text-sm font-bold">{email?.split("@")[0]}</h3>
