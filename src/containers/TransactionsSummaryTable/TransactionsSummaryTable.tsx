@@ -1,5 +1,6 @@
 "use client";
 import React from "react";
+import ReactLoader from 'react-loading'
 import {
   Table,
   TableBody,
@@ -97,7 +98,7 @@ const TransactionsSummaryTable = ({ showAll = false }) => {
               </TableRow>
             ))
           ) : (
-            <div>Loading...</div>
+            <ReactLoader type="bars" width={'5%'} height={'5%'} color="#ADD8E6"/>
           )}
         </TableBody>
       </Table>
