@@ -48,36 +48,56 @@ const ReportContainer = () => {
     >
    
       <div className="space-y-3" id="report-content">
-      <h2 className="text-2xl font-bold  text-center">Account Summary</h2>
-        <p className="flex justify-between">
+      <h2 className="text-2xl font-bold  text-center text-black">Account Summary</h2>
+        <p className="flex justify-between text-black">
           <strong>Total Transactions:</strong>
           <span id="total-transactions">{reportData?.total_transactions}</span>
         </p>
-        <p className="flex justify-between">
+        <p className="flex justify-between text-black">
           <strong>Total Income:</strong>
           <span id="total-income">{reportData?.total_income}</span>
         </p>
-        <p className="flex justify-between">
+        <p className="flex justify-between text-black">
           <strong>Total Expense:</strong>
           <span id="total-expense">{reportData?.total_expense}</span>
         </p>
-        <p className="flex justify-between">
+        <p className="flex justify-between text-black">
+          <strong>Total Investment:</strong>
+          <span id="total-expense">{reportData?.total_expense}</span>
+        </p>
+        <p className="flex justify-between text-black">
+          <strong>Total Expense:</strong>
+          <span id="total-expense">{reportData?.total_expense}</span>
+        </p>
+        <p className="flex justify-between text-black">
           <strong>Net Balance:</strong> <span id="net-balance"></span>
           {reportData?.net_balance}
         </p>
-        <p className="flex justify-between">
+        <p className="flex justify-between text-black">
           <strong>Top Income Category:</strong>
           <span id="top-income-cat">
             {reportData?.top_income_cat?.category}
           </span>
         </p>
-        <p className="flex justify-between">
+        <p className="flex justify-between text-black">
           <strong>Top Expense Category:</strong>
           <span id="top-expense-cat">
             {reportData?.top_expense_cat?.category}
           </span>
         </p>
-        <p className="flex justify-between w-full p-2">
+        <p className="flex justify-between w-full text-black">
+          <strong>Top Investment Category:</strong>
+          <span id="top-income-cat">
+            {reportData?.top_income_cat?.category}
+          </span>
+          </p>
+        <p className="flex justify-between text-black">
+          <strong>Top Saving Category:</strong>
+          <span id="top-income-cat">
+            {reportData?.top_income_cat?.category}
+          </span>
+        </p>
+        <p className="flex justify-between w-full p-2 text-black">
           <strong>Summary:</strong>
           <span>
             This will contain a detail summary about how u are doing financially
@@ -86,6 +106,7 @@ const ReportContainer = () => {
             financia decisions.
           </span>
         </p>
+    
       </div>
       <Button
         title="Download PDF"

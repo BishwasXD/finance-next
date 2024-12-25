@@ -17,6 +17,9 @@ const DonutChart = () => {
 
   const chartOptions = {
     labels: ["Income", "Expense"],
+    chart:{
+      foreColor:'#64748B'
+    }
   } as ApexOptions;
 
  if (isLoading){

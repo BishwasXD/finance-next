@@ -124,7 +124,7 @@ const AddTransactionForm = () => {
             placeholder="Add description..."
             {...register("description")}
           />
-          <Button title="Add Transaction" type="submit" />
+          <Button title="Add Transaction" className="dark:text-white dark:bg-gray-600 dark:hover:bg-gray-700" type="submit" />
         </div>
       </form>
   

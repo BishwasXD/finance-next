@@ -72,7 +72,7 @@ type DatepickerProps = {
             </Button>
           </PopoverTrigger>
           <PopoverContent
-            className="bg-white dark:bg-sbDarkCard"
+            className="bg-white dark:bg-gray-500"
             align="center"
             side={side}
 

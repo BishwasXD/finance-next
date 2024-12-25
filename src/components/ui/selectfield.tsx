@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import {
   MoveDownLeft,
   MoveUpRight,
@@ -40,17 +40,17 @@ const SelectField = ({setSelectedField, selectedField}:SelectedFieldProps) => {
   };
 
   return (
-    <div className="flex border rounded-md bg-gray-200 justify-between">
+    <div className="flex border rounded-md bg-gray-200 justify-between dark:bg-gray-700">
       {fieldOptions.map((item) => (
         <div key={item.id} className="">
           <div
             className={`flex gap-[5px] cursor-pointer py-[10px] px-[10px] ${
-              selectedField === item.title ? "bg-white border-r rounded-md" : ""
+              selectedField === item.title ? "bg-white border-r dark:bg-gray-800 rounded-md" : ""
             }`} 
             onClick={() => handleSelect(item.title as FieldType)} 
           >
             {item.icon}
-            <p>{item.title}</p>
+            <p className="dark:text-white">{item.title}</p>
           </div>
         </div>
       ))}
