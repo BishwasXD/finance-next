@@ -71,11 +71,11 @@ const AuthForm = () => {
   };
 
   return (
-    <div className="flex flex-col gap-5  bg-white w-[500px] py-20 dark:bg-dark_mode dark:border border-black px-4">
+    <div className="flex flex-col gap-5  bg-white w-[500px] py-20 dark:bg-dark_mode dark:border border-black px-4 dark:border-0">
       <Toaster />
       <div className="flex flex-col text-center gap-4">
         <p className="font-bold">Welcome to Track My Finance</p>
-        <p className="text-sm text-gray-600">
+        <p className="text-sm text-gray-600 dark:text-white">
           Easily manage and visualize your daily expenses and incomes with
           intuitive graphs and charts.
         </p>
@@ -90,11 +90,11 @@ const AuthForm = () => {
 
       <div className="flex items-center justify-center">
         <hr className="border-t border-gray-300 w-full" />
-        <span className="px-1 text-gray-600 text-sm">OR</span>
+        <span className="px-1 text-gray-600 text-sm dark:text-white">OR</span>
         <hr className="border-t border-gray-300 w-full" />
       </div>
       <form onSubmit={form.handleSubmit(onSubmit)}>
-        <div className="flex flex-col gap-4 px-4">
+        <div className="flex flex-col gap-4">
           <div>
             <label htmlFor="email" className="text-sm">
               Email
@@ -150,7 +150,7 @@ const AuthForm = () => {
           title={!isLogin ? "SignUp" : "Login"}
           type="submit"
           variant="outline"
-          className="w-full mt-10 bg-blue-600 hover:bg-blue-500 text-white"
+          className="w-full mt-10 bg-blue-600 hover:bg-blue-500 text-white dark:bg-gray-500 dark:hover:bg-gray-600"
         />
         <p className="text-center py-[16px]">
           {!isLogin ? "Already have an account? " : "Go back to "}
@@ -162,7 +162,7 @@ const AuthForm = () => {
           </strong>
         </p>
       </form>
-      <p className="font-light text-center text-gray-600 text-sm">
+      <p className="font-light text-center text-gray-600 text-sm dark:text-white">
         By signing up, you agree to accept our terms and conditions.
       </p>
     </div>

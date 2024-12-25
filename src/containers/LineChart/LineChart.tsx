@@ -20,7 +20,7 @@ const LineChart = () => {
       name: "Income",
       hovertemplate: "%{x|%d %b} <br>Income: %{y}",
       line: {
-        color: '#4CAF50',  // Green for income
+        color: '#4CAF50', 
         width: 2
       },
       marker: {
@@ -49,7 +49,7 @@ const LineChart = () => {
     paper_bgcolor: 'rgba(0,0,0,0)',  
     plot_bgcolor: 'rgba(0,0,0,0)',
     xaxis: {
-      type: "date" as "date",
+      type: "date",
       tickformat: "%b",
       gridcolor: '#2D3748',  
       linecolor: '#2D3748',
@@ -70,13 +70,13 @@ const LineChart = () => {
       font: { color: '#64748b' },
       bgcolor: 'rgba(0,0,0,0)'
     },
-    hovermode: 'closest',
+    hovermode: 'closest' as const,
     hoverlabel: {
       bgcolor: '#1A202C', 
       font: { color: '#E2E8F0' }
     },
     margin: { t: 50, r: 20, b: 40, l: 60 }
-  };
+  } as const;
 
   return (
     <div>
