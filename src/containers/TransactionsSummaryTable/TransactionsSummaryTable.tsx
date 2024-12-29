@@ -23,7 +23,6 @@ import { ConfirmationPopover } from "@/components/ConfirmationPopover";
 const TransactionsSummaryTable = ({ showAll = false }) => {
   const router = useRouter();
   const { data, isError, isLoading } = useTransactionTable();
-  console.log("TRANSACTION DATA IS", data);
 
   if (isError) {
     return <div>Something went wrong, try refreshing</div>;
@@ -51,7 +50,6 @@ const TransactionsSummaryTable = ({ showAll = false }) => {
     }
   };
   let dataSize = data.length
-  console.log("size of a data is", dataSize)
   return (
     <div className="w-full flex flex-col items-center justify-center py-10 gap-4 h-[600px]">
       <p className="text-blue-500 items-center justify-center font-semibold inline-block">
@@ -98,7 +96,7 @@ const TransactionsSummaryTable = ({ showAll = false }) => {
               </TableRow>
             ))
           ) : (
-            <ReactLoader type="bars" width={'5%'} height={'5%'} color="#ADD8E6"/>
+            <ReactLoader type="bars" width={'25%'} height={'25%'} color="#ADD8E6"/>
           )}
         </TableBody>
       </Table>

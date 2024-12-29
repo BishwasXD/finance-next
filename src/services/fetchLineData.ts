@@ -5,7 +5,6 @@ import { getSession } from "next-auth/react";
 export const fetchLineData = async () => {
   const session = await getSession()
   const token = session?.user?.token
-  console.log('TOKEN', token)
   try {
     const res = await axios.get(backendRequests.getLineChartDataUrl,{
       headers:{
